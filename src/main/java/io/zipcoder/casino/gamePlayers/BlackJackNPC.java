@@ -9,11 +9,10 @@ public class BlackJackNPC extends CardPlayer
         super(name, gamblingWallet);
     }
 
-    public void underSeventeen(Integer handValue){
-        if(handValue < 17){
-            this.hand.add(Deck[0]);
-        }
+    public boolean underSeventeen(Integer handValue){
+        return handValue < 17;
     }
+
 
 
 }
