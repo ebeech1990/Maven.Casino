@@ -11,12 +11,13 @@ public class BlackJackHumanPlayer extends CardPlayer {
     }
 
     public Boolean doubleDown(){
-        // if true double wager
+        // TODO: if true double wager
+
         return null;
     }
 
     public Boolean split(){
-        //player has option to split only if both cards match
+        // TODO: player has option to split only if both cards match
 
         return null;
     }
