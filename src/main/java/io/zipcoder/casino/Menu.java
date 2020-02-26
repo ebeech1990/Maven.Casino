@@ -37,7 +37,9 @@ public class Menu implements GameCreator{
 
     }
 
-    public AccountData createAccount() {
-        return null;
+    public static AccountData createAccount() {
+        AccountData newPlayer = new AccountData();
+        System.out.println(newPlayer.getId());
+        return newPlayer;
     }
 }

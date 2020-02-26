@@ -4,18 +4,22 @@ public class AccountData {
 
     private Wallet userWallet;
     private Integer id;
+    //private Integer lastId = 0;
 
-    public void setWallet(Wallet w){
+    public AccountData(){
+        //userWallet = new Wallet(200);
+        this.id = 1;
+
+
 
     }
+
+
 
     public Wallet getWallet() {
         return userWallet;
     }
 
-    public void setId(Integer id) {
-
-    }
 
     public Integer getId() {
         return id;
