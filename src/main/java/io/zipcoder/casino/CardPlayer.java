@@ -2,11 +2,12 @@ package io.zipcoder.casino;
 
 import java.util.ArrayList;
 
-public class CardPlayer extends Player {
+public abstract class CardPlayer extends Player
+{
     private ArrayList<PlayingCard> hand;
 
-    public CardPlayer(){
-
+    public CardPlayer(String name, Wallet gamblingWallet) {
+        super(name, gamblingWallet);
     }
 
     public ArrayList<PlayingCard> getHand(){
