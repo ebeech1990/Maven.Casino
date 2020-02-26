@@ -1,4 +1,7 @@
 package io.zipcoder.casino;
 
-public class CardTable {
+public abstract class CardTable {
+    Deck deck;
+    Integer players;
+
 }
