@@ -10,6 +10,7 @@ public class Casino {
 
 
 
+
     public  Integer displayMenu(){
     String welcome = "Welcome to our casino!\nPlease select an option:\n" +
             "(1) Play a game\n(2) Create an account\n(3) Quit application";
@@ -32,10 +33,11 @@ public class Casino {
 
 
 
-    public static void main(String[] args)
-    {
+
+    public static void main(String[] args) {
 
         // write your tests before you start fucking with this
+     
 
 
     }

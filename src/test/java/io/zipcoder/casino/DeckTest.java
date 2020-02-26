@@ -1,6 +1,5 @@
 package io.zipcoder.casino;
 
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -14,5 +13,9 @@ public class DeckTest {
 
         Assert.assertTrue(actual instanceof Card);
     }
+
 }
+
+
+
 
