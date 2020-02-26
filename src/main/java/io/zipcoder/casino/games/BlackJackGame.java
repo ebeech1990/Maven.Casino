@@ -13,4 +13,7 @@ public class BlackJackGame extends CardTable {
     Deck bjDeck = new Deck();
 
 
+    public BlackJackGame(Integer pot) {
+        this.pot = pot;
+    }
 }
