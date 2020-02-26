@@ -3,9 +3,7 @@ package io.zipcoder.casino;
 import io.zipcoder.casino.utilities.Display;
 
 public class Menu implements GameCreator{
-
-
-
+private AccountData user;
 
     public void chooseGame(Integer choice) {
         if(choice == 4){
@@ -37,9 +35,5 @@ public class Menu implements GameCreator{
 
     }
 
-    public static AccountData createAccount() {
-        AccountData newPlayer = new AccountData();
-        System.out.println(newPlayer.getId());
-        return newPlayer;
-    }
+
 }

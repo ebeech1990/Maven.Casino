@@ -7,19 +7,19 @@ import io.zipcoder.casino.utilities.Display;
 import io.zipcoder.casino.utilities.Prompt;
 
 public class Casino {
-
+private AccountData user;
 
 
 
     public  Integer displayMenu(){
     String welcome = "Welcome to our casino!\nPlease select an option:\n" +
-            "(1) Play a game\n(2) Create an account\n(3) Quit application";
+            "(1) Load Account\n(2) Create an account\n(3) Quit application";
          Integer userChoice = Prompt.getInteger(welcome);
          if(userChoice == 1) {
             Menu.listGames();
          }
          else if(userChoice == 2) {
-            Menu.createAccount();
+            Casino.createAccount();
 
          }
          else if(userChoice == 3) {
@@ -31,13 +31,20 @@ public class Casino {
          return userChoice;
     }
 
-
+    public static AccountData createAccount() {
+        AccountData newPlayer = new AccountData();
+        System.out.println(newPlayer.getId());
+        Persistence.gatherData(newPlayer);
+        return newPlayer;
+    }
 
 
     public static void main(String[] args) {
 
         // write your tests before you start fucking with this
      
+        Casino c = new Casino();
+        c.displayMenu();
 
 
     }
