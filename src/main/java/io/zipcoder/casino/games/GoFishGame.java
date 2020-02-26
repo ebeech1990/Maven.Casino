@@ -1,10 +1,11 @@
 package io.zipcoder.casino.games;
 
 import io.zipcoder.casino.CardTable;
+import io.zipcoder.casino.gamePlayers.GoFishHumanPlayer;
 
-public class GoFishGame extends CardTable {
+//public class GoFishGame extends CardTable {
 
-    CardPlayer goFishPlayer = new CardPlayer();
-    Deck goFishDeck = new Deck();
+//    GoFishHumanPlayer goFishPlayer = new GoFishHumanPlayer();
+//    Deck goFishDeck = new Deck();
 
-}
+//}

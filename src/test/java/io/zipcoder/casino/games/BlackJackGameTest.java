@@ -10,8 +10,9 @@ public class BlackJackGameTest {
     @Test
     public void testBjGame() {
 
-        BlackJackGame testBjGame = new BlackJackGame();
-        Integer expected = 0;
+        Integer testPot = 20;
+        BlackJackGame testBjGame = new BlackJackGame(testPot);
+        Integer expected = 20;
 
         Integer actual = testBjGame.pot;
 
