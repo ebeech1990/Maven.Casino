@@ -4,10 +4,12 @@ import io.zipcoder.casino.CardTable;
 
 public class BlackJackGame extends CardTable {
     Integer pot = 0;
-    Deck bjDeck;
+    Deck bjDeck; // not defined yet?
 
-    setUp(int);
-    playerTurn();
+//    setUp(int);
+//    playerTurn();
 
-    CardPlayer bjPlayer = new CardPlayer();
+    CardPlayer bjPlayer = new CardPlayer(); // not defined yet
+
+
 }
