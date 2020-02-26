@@ -9,6 +9,7 @@ import io.zipcoder.casino.utilities.Prompt;
 public class Casino {
 
 
+
     public  Integer displayMenu(){
     String welcome = "Welcome to our casino!\nPlease select an option:\n" +
             "(1) Play a game\n(2) Create an account\n(3) Quit application";
@@ -29,9 +30,13 @@ public class Casino {
          return userChoice;
     }
 
-    public static void main(String[] args) {
+
+
+    public static void main(String[] args)
+    {
+
         // write your tests before you start fucking with this
-       FileWrite.gatherData();
+
 
     }
 }
