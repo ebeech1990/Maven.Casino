@@ -1,4 +1,23 @@
 package io.zipcoder.casino;
 
-public class Dice {
+import java.util.Random;
+
+public class Dice
+{
+    Random randomizer;
+
+    public Dice()
+    {
+        randomizer = new Random();
+    }
+
+    protected Dice(Long seed)
+    {
+        randomizer = new Random(seed);
+    }
+
+    public Integer roll()
+    {
+        return(randomizer.nextInt(6) + 1);
+    }
 }
