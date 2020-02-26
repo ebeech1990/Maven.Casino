@@ -16,7 +16,9 @@ private AccountData user;
             "(1) Load Account\n(2) Create an account\n(3) Quit application";
          Integer userChoice = Prompt.getInteger(welcome);
          if(userChoice == 1) {
-            Menu.listGames();
+            //Menu.listGames();
+            user = (AccountData) Persistence.readData();
+             System.out.println();
          }
          else if(userChoice == 2) {
             Casino.createAccount();
