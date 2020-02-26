@@ -118,7 +118,7 @@ public class CardTest
         Integer expectedFirstCompare = 1;
         Integer expectedSecondCompare = -1;
         Integer expectedThirdCompare = 1;
-        
+
         // WHEN
 
         Integer actualFirstCompare = testAce.compareTo(testJack);
