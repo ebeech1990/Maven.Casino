@@ -1,4 +1,5 @@
 package io.zipcoder.casino.gamePlayers;
 
-public class BlackJackHumanPlayer {
+public class BlackJackHumanPlayer
+{
 }
