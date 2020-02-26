@@ -19,20 +19,34 @@ public class GoFishHumanPlayer extends CardPlayer {
         return score;
     }
 
-    public Boolean fishing(CardPlayer target, Card.Rank desiredRank)
+
+
+    public Boolean fishing(GoFishNPC target, Card.Rank desiredRank)
     {
+        ArrayList<Card> stolenCards = target.fishedFrom(desiredRank);
 
-
-        return false;
+        if(stolenCards.isEmpty())
+        {
+            return false;
+        }
+        else
+        {
+            hand.addAll(stolenCards);
+            return true;
+        }
     }
 
-    public ArrayList<Card> fishedFrom(Integer number)
+    public ArrayList<Card> fishedFrom(Card.Rank targetRank)
     {
         ArrayList<Card> fishedCards = new ArrayList<>();
 
         for(Card card : this.hand)
         {
-
+            if(card.rank() == targetRank)
+            {
+                this.discard(card);
+                fishedCards.add(card);
+            }
         }
 
         return fishedCards;
