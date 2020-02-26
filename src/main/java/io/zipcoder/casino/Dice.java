@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Dice
 {
-    Random randomizer;
+    private Random randomizer;
 
     public Dice()
     {
