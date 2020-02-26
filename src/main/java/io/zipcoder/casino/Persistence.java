@@ -3,7 +3,7 @@ import org.json.simple.parser.JSONParser;
 //import jdk.nashorn.internal.parser.JSONParser;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
-
+import com.google.gson.Gson;
 import java.io.FileReader;
 import java.io.Reader;
 import java.io.FileWriter;
@@ -32,19 +32,18 @@ public class Persistence {
         }
     }
 
-    public static Object readData() {
+    public static AccountData readData() {
         JSONParser parser = new JSONParser();
+        Gson gson = new Gson();
         try (Reader reader = new FileReader("/Users/ebeech/Downloads/casino.txt")) {
-            JSONObject jsonObject = (JSONObject) parser.parse(reader);
-            return jsonObject;
-
+            // JSONObject jsonObject = (JSONObject) parser.parse(reader);
+            AccountData userData = gson.fromJson(reader, AccountData.class);
+            return userData;
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
+            return null;
         }
 
 
-        return null;
     }
 }

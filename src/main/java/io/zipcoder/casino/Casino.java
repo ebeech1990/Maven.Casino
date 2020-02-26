@@ -18,7 +18,7 @@ private AccountData user;
          if(userChoice == 1) {
             //Menu.listGames();
             user = (AccountData) Persistence.readData();
-             System.out.println();
+             System.out.println("Welcome back!" + user.getId()+ " " + user.getWallet());
          }
          else if(userChoice == 2) {
             Casino.createAccount();
