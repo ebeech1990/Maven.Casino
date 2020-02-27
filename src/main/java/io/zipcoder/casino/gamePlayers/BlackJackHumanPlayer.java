@@ -18,6 +18,7 @@ public class BlackJackHumanPlayer extends CardPlayer implements GamblingAction
         if(true){
             // double Wager / bet initial wager again and receive 1 final card
             this.receiveCard();
+            this.bet(1);
             return true;
         }
         else {
