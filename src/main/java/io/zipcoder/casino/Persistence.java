@@ -48,9 +48,9 @@ public class Persistence {
 
             AccountData userData = gson.fromJson(reader, AccountData.class);
             if (userData.getId() != id) {
-                Casino casino = new Casino();
+                Menu menu = new Menu();
                 System.out.println("account not found");
-                casino.displayMenu();
+                menu.displayMenu();
 
             } else {
                 return userData;
