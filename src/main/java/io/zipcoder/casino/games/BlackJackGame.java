@@ -62,7 +62,10 @@ public class BlackJackGame extends CardTable
             continuePlaying ? setUp() : quitApp();
         }
 //       "Dealer is showing <face up card> - what would you like to do?"
-//          
+//          "Hit" or "Stand"
+        if (bjDealer.handSum < 17) {
+            bjDealer.receiveCard(bjDeck.deal());
+        }
 
 
     }
