@@ -49,26 +49,45 @@ public class BlackJackGame extends CardTable
         return sum;
     }
 
-    public void playBlackJack() {
-//        C = continue playing       Q = exit game
-        if (bjDealer.handSum() == 21) {
+        public Boolean is21(ArrayList<Integer> hand) {
+            if (hand.equals(21)) {
+                return true;
+            } else {return false;}
+        }
+
+        public void playBlackJack() {
+
+        if (bjDealer.handSum.equals(21) {
             pot -= bet;
-//          "What would you like to do? Q/C
+            System.out.println("Dealer wins - would you like to continue playing?");
+            //input from player C/Q
             continuePlaying ? setUp() : quitApp();
-        }
-        if (bjPlayer.handSum == 21) {
-            pot += bet;
-//          "What would you like to do? Q/C
-            continuePlaying ? setUp() : quitApp();
-        }
-//       "Dealer is showing <face up card> - what would you like to do?"
-//          "Hit" or "Stand"
-        if (bjDealer.handSum < 17) {
-            bjDealer.receiveCard(bjDeck.deal());
+            }
         }
 
 
-    }
+//    public void playBlackJack() {
+////        C = continue playing       Q = exit game
+//        if (bjDealer.handSum() == 21) {
+//            pot -= bet;
+////          "Dealer wins - would you like to continue playing?" C/Q
+//            continuePlaying ? setUp() : quitApp();
+//        }
+//        if (bjPlayer.handSum == 21) {
+//            pot += bet;
+////          "You Win! Would you like to continue playing?" Q/C
+//            continuePlaying ? setUp() : quitApp();
+//        }
+////       "Dealer is showing <face up card> - what would you like to do?"
+////          "Hit" or "Stand"
+//        if (input == "H") {bjPlayer.receiveCard(bjDeck.deal());}
+//
+//        if (bjDealer.handSum < 17) {
+//            bjDealer.receiveCard(bjDeck.deal());
+//        }
+//
+//
+//    }
 
     public void displayCards()
     {
