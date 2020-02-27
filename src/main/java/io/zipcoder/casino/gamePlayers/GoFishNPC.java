@@ -22,7 +22,7 @@ public class GoFishNPC extends CardPlayer {
 
 
 
-    public Boolean fishing(GoFishNPC target, Card.Rank desiredRank)
+    public Boolean fishing(GoFishHumanPlayer target, Card.Rank desiredRank)
     {
         // TODO: Actually do AI
         desiredRank = Card.Rank.THREE;

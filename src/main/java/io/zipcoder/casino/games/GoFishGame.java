@@ -65,5 +65,15 @@ public class GoFishGame extends CardTable
     public void takeTurn(CardPlayer playerInControl)
     {
         // TODO: Really need to make NPC a GoFisher who implements AI
+        if(playerInControl instanceof GoFishHumanPlayer)
+        {
+        }
+        else
+        {
+            if(((GoFishNPC)activePlayer).fishing(human, Card.Rank.DEUCE))
+            {
+                takeTurn((CardPlayer)activePlayer);
+            }
+        }
     }
 }
