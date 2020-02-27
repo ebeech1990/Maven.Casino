@@ -6,15 +6,16 @@ import io.zipcoder.casino.utilities.Prompt;
 
 public class Casino implements Display {
     private AccountData user;
+    boolean running =true;
 
 
-
-    public Integer displayMenu() {
-        String welcome = "Welcome to our casino!\nPlease select an option:\n" +
-                "(1) Load Account\n(2) Create an account\n(3) Quit application";
-        Integer userChoice = Prompt.getInteger(welcome);
-        callOption(userChoice);
-        return userChoice;
+    public void displayMenu() {
+        while (running) {
+            String welcome = "Welcome to our casino!\nPlease select an option:\n" +
+                    "(1) Load Account\n(2) Create an account\n(3) Quit application";
+            Integer userChoice = Prompt.getInteger(welcome);
+            callOption(userChoice);
+        }
     }
 
     public  void callOption(Integer userChoice) {

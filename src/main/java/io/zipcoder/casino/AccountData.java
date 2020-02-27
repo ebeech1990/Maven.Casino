@@ -6,7 +6,7 @@ import java.util.List;
 public class AccountData {
 
     private Wallet userWallet;
-    private static Integer nextId = 1;
+    private static Integer nextId = 3;
     private Integer id;
 
     //private Integer lastId = 0;

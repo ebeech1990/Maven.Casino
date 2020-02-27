@@ -1,6 +1,7 @@
 package io.zipcoder.casino;
 import com.google.gson.GsonBuilder;
 import io.zipcoder.casino.utilities.Display;
+import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 //import jdk.nashorn.internal.parser.JSONParser;
 import org.json.simple.JSONObject;
@@ -39,7 +40,7 @@ public class Persistence {
 
     public static AccountData readData(Integer id) {
 
-        JSONParser parser = new JSONParser();
+
         Gson gson = new Gson();
 
         try (Reader reader = new FileReader("/Users/ebeech/Downloads/casino.txt")) {
@@ -47,8 +48,9 @@ public class Persistence {
 
             AccountData userData = gson.fromJson(reader, AccountData.class);
             if (userData.getId() != id) {
+                Casino casino = new Casino();
                 System.out.println("account not found");
-
+                casino.displayMenu();
 
             } else {
                 return userData;
