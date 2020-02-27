@@ -37,11 +37,13 @@ public class BlackJackHumanPlayer extends CardPlayer implements GamblingAction
     }
 
     public void bet(Integer wager){
+        //place bet and add to pot
+        // pot += wager
 
     }
 
     public void cashOut(Integer balance){
-        
+
     }
 
 }
