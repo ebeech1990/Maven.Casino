@@ -40,23 +40,47 @@ public class GoFishHumanPlayer extends CardPlayer {
     {
         ArrayList<Card> fishedCards = new ArrayList<>();
 
-        for(Card card : this.hand)
+        for(Card card : this.getHand())
         {
-            if(card.rank() == targetRank)
+            if(card.rank().equals(targetRank))
             {
-                this.discard(card);
                 fishedCards.add(card);
             }
         }
 
+        this.getHand().removeAll(fishedCards);
         return fishedCards;
     }
 
     public Boolean takeSet(Card.Rank set)
     {
+        Integer cardCount = 0;
+        ArrayList<Card> foundCard = new ArrayList<>();
 
-        //if player has set increase score by 1
-        //remove sets from player hand?
-        return false;
+        if(hand.isEmpty())
+        {
+            return false;
+        }
+
+        for(Card card : this.hand)
+        {
+            if(card.rank().equals(set))
+            {
+                cardCount++;
+                foundCard.add(card);
+            }
+        }
+
+        if(cardCount < 4)
+        {
+            return false;
+        }
+        else
+        {
+            // TODO: Remove cards
+            this.hand.removeAll(foundCard);
+            score++;
+            return true;
+        }
     }
 }
