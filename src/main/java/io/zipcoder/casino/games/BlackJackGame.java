@@ -42,15 +42,15 @@ public class BlackJackGame extends CardTable
 //        bjDealer.receiveCard(bjDeck.deal()); bjDealer not set up yet
     }
 
-    public Integer handSum(ArrayList<Integer> hand) {
+    public Integer handSum(ArrayList<Card> hand) {
         Integer sum = 0;
         for(int i = 0; i < hand.size(); i++)
-            sum += hand.get(i);
+            sum += hand.get(i).rank().getRankValue();
         return sum;
         }
 
-        public Boolean is21(ArrayList<Integer> hand) {
-            if (hand.equals(21)) {
+        public Boolean is21(ArrayList<Card> hand) {
+            if (handSum(hand).equals(21)) {
                 return true;
             } else {return false;}
         }
@@ -63,7 +63,7 @@ public class BlackJackGame extends CardTable
         }
 
         public void dealerWins() {
-            pot -= bet;
+            pot = 0;
             System.out.println("Dealer wins - would you like to continue playing?");
             //input from player C/Q
             continuePlaying ? setUp() : quitApp();
@@ -96,11 +96,9 @@ public class BlackJackGame extends CardTable
             playerWins();
         }
         }
-        public Boolean instanceOfAce(); {
-            if 
+        public Boolean instanceOfAce(ArrayList<Integer> hand); {
+            if ((handSum() > 21) && handSum().instanceof(ACE))
 }
-
-
             public void playBlackJack () {
 
                 if (bjDealer.handSum.is21()) {
