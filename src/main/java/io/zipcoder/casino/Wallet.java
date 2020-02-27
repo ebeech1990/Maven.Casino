@@ -48,6 +48,7 @@ public class Wallet
         {
             chipsBalance -= removedChips;
 
+            System.out.println("Blah blah");
             return removedChips;
         }
     }
