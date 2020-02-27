@@ -1,13 +1,10 @@
 package io.zipcoder.casino.gamePlayers;
 
-import io.zipcoder.casino.Card;
-import io.zipcoder.casino.CardPlayer;
-import io.zipcoder.casino.Deck;
-import io.zipcoder.casino.Wallet;
+import io.zipcoder.casino.*;
 
 import java.util.ArrayList;
 
-public class BlackJackHumanPlayer extends CardPlayer
+public class BlackJackHumanPlayer extends CardPlayer implements GamblingAction
 
 {
     private ArrayList<Card> secondHand;
@@ -36,6 +33,14 @@ public class BlackJackHumanPlayer extends CardPlayer
             return true;
         }
         return false;
+    }
+
+    public void bet(Integer wager){
+
+    }
+
+    public void cashOut(Integer balance){
+        
     }
 
 }
