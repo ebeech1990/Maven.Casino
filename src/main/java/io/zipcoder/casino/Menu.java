@@ -9,7 +9,7 @@ public class Menu implements GameCreator{
 
     public void chooseGame(Integer choice) {
         if(choice == 4){
-           //blackJack();
+            //blackJack();
 
         }
         else if(choice == 5) {
@@ -32,7 +32,7 @@ public class Menu implements GameCreator{
 
     public static void quitApp() {
 
-            System.exit(0);
+        System.exit(0);
 
 
     }
