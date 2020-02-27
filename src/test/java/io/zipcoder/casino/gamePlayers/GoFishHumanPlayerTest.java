@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import static io.zipcoder.casino.Card.Rank.*;
 import static io.zipcoder.casino.Card.Suit.*;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class GoFishHumanPlayerTest
 {
@@ -55,5 +55,61 @@ public class GoFishHumanPlayerTest
         assertEquals(expectedAfter.toArray(), handAfter.toArray());
     }
 
-    // TODO: takeSet
+    @Test
+    public void scoreWithJacks()
+    {
+        // GIVEN
+
+        Integer expectedScore = 1;
+        GoFishHumanPlayer testPlayer = new GoFishHumanPlayer("Jackie Chan", new Wallet());
+        Card jackOfSpades = new Card(JACK, SPADES);
+        Card jackOfDiamonds = new Card(JACK, DIAMONDS);
+        Card jackOfClubs = new Card(JACK, CLUBS);
+        Card jackOfHearts = new Card(JACK, HEARTS);
+
+        testPlayer.receiveCard(jackOfSpades);
+        testPlayer.receiveCard(jackOfDiamonds);
+        testPlayer.receiveCard(jackOfClubs);
+        testPlayer.receiveCard(jackOfHearts);
+
+        // WHEN
+
+        testPlayer.takeSet(JACK);
+        Integer actualScore = testPlayer.getScore();
+
+        // THEN
+
+        assertEquals(expectedScore, actualScore);
+        assertTrue(testPlayer.getHand().isEmpty());
+
+    }
+
+    @Test
+    public void failToTakeFours()
+    {
+        // GIVEN
+
+        Integer expectedScore = 0;
+        GoFishHumanPlayer testPlayer = new GoFishHumanPlayer("Overly Eager", new Wallet());
+        Card fourOfSpades = new Card(FOUR, SPADES);
+        Card fourOfDiamonds = new Card(FOUR, DIAMONDS);
+        Card fourOfClubs = new Card(FOUR, CLUBS);
+
+
+        testPlayer.receiveCard(fourOfSpades);
+        testPlayer.receiveCard(fourOfDiamonds);
+        testPlayer.receiveCard(fourOfClubs);
+
+
+        // WHEN
+
+        testPlayer.takeSet(JACK);
+        testPlayer.takeSet(FOUR);
+        Integer actualScore = testPlayer.getScore();
+
+        // THEN
+
+        assertEquals(expectedScore, actualScore);
+        assertFalse(testPlayer.getHand().isEmpty());
+    }
 }

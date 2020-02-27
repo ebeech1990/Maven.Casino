@@ -22,4 +22,15 @@ public class DiceTest {
 
         assertEquals(expected, actual, 2.5);
     }
+
+    @Test
+    public void rollTestSeeded()
+    {
+        Dice testDie = new Dice((long)10000000);
+        Integer expected = 5;
+
+        Integer actual = testDie.roll();
+
+        assertEquals(expected, actual);
+    }
 }

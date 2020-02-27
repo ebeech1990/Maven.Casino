@@ -57,11 +57,6 @@ public class GoFishHumanPlayer extends CardPlayer {
         Integer cardCount = 0;
         ArrayList<Card> foundCard = new ArrayList<>();
 
-        if(hand.isEmpty())
-        {
-            return false;
-        }
-
         for(Card card : this.hand)
         {
             if(card.rank().equals(set))
