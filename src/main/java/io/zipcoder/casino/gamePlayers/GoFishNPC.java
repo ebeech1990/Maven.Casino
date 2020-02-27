@@ -11,8 +11,8 @@ public class GoFishNPC extends CardPlayer {
 
     public GoFishNPC()
     {
-            super("Fishin' Joe",new Wallet(0));
-            score = 0;
+        super("Fishin' Joe",new Wallet(0));
+        score = 0;
     }
 
     public Integer getScore()
