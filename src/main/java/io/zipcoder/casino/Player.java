@@ -9,6 +9,16 @@ public abstract class Player
     {
         this.name = name;
         this.gamblingWallet = gamblingWallet;
+
     }
+    public String getName() {
+        return name;
+    }
+
+    public Wallet getGamblingWallet() {
+        return gamblingWallet;
+    }
+
+
 
 }
