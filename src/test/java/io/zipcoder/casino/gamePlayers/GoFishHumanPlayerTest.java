@@ -1,5 +1,6 @@
 package io.zipcoder.casino.gamePlayers;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import io.zipcoder.casino.Card;
 import io.zipcoder.casino.Wallet;
 import org.junit.Test;
@@ -51,8 +52,8 @@ public class GoFishHumanPlayerTest
         ArrayList<Card> actual = testPlayer.fishedFrom(KING);
         ArrayList<Card> handAfter = testPlayer.getHand();
 
-        assertEquals(expected.toArray(), actual.toArray());
-        assertEquals(expectedAfter.toArray(), handAfter.toArray());
+        assertEquals(expected, actual);
+        assertEquals(expectedAfter, handAfter);
     }
 
     @Test
@@ -85,8 +86,7 @@ public class GoFishHumanPlayerTest
     }
 
     @Test
-    public void failToTakeFours()
-    {
+    public void failToTakeFours() {
         // GIVEN
 
         Integer expectedScore = 0;
@@ -111,5 +111,34 @@ public class GoFishHumanPlayerTest
 
         assertEquals(expectedScore, actualScore);
         assertFalse(testPlayer.getHand().isEmpty());
+    }
+
+    @Test
+    public void takeThrees()
+    {
+        GoFishHumanPlayer testPlayer = new GoFishHumanPlayer("Three Taker", new Wallet(0));
+        Card threeOfSpades = new Card(THREE, SPADES);
+        Card threeOfDiamonds = new Card(THREE, DIAMONDS);
+        Card threeOfClubs = new Card(THREE, CLUBS);
+        Card threeOfHearts = new Card(THREE, HEARTS);
+        Boolean expected = true;
+        Integer expectedScore = 1;
+        Boolean expectedFailure = false;
+        Integer expectedScoreAfterFailure = 1;
+
+        testPlayer.receiveCard(threeOfSpades);
+        testPlayer.receiveCard(threeOfDiamonds);
+        testPlayer.receiveCard(threeOfClubs);
+        testPlayer.receiveCard(threeOfHearts);
+
+        Boolean actual = testPlayer.takeSet(THREE);
+        Integer actualScore = testPlayer.getScore();
+        Boolean actualFailure = testPlayer.takeSet(QUEEN);
+        Integer actualScoreAfterFailure = testPlayer.getScore();
+
+        assertEquals(expected, actual);
+        assertEquals(expectedScore, actualScore);
+        assertEquals(expectedFailure, actualFailure);
+        assertEquals(expectedScoreAfterFailure, actualScoreAfterFailure);
     }
 }
