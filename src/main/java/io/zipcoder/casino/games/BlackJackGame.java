@@ -96,6 +96,10 @@ public class BlackJackGame extends CardTable
             playerWins();
         }
         }
+        public Boolean instanceOfAce(); {
+            if 
+}
+
 
             public void playBlackJack () {
 
