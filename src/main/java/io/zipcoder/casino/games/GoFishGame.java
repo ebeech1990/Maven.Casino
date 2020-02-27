@@ -4,8 +4,13 @@ import io.zipcoder.casino.*;
 import io.zipcoder.casino.gamePlayers.GoFishHumanPlayer;
 import io.zipcoder.casino.gamePlayers.GoFishNPC;
 
+import java.util.Collections;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class GoFishGame extends CardTable
 {
+    private static final Logger LOGGER = Logger.getLogger(GoFishGame.class.getName());
     Player activePlayer;
     GoFishHumanPlayer human;
     GoFishNPC NPC;
@@ -59,14 +64,28 @@ public class GoFishGame extends CardTable
     @Override
     public String displayTable()
     {
-        return null;
+        StringBuilder output = new StringBuilder();
+        output.append(String.format("Your Score: %s\nHAND:\n", human.getScore()));
+        for(Card card : human.getHand())
+        {
+            output.append(String.format("%s\n", card.toString()));
+        }
+        output.append(String.format("\n\nOpponent's Score: %s\nHAND\n", NPC.getScore()));
+        for(Card card : NPC.getHand())
+        {
+            output.append(String.format("%s\n", card.toString()));
+        }
+        LOGGER.log(Level.INFO, output.toString());
+        return output.toString();
     }
 
     public void takeTurn(CardPlayer playerInControl)
     {
-        // TODO: Really need to make NPC a GoFisher who implements AI
+        displayTable();
+        // TODO: Really need to make NPC and Human just a GoFishPlayer, who implements AI behaviors
         if(playerInControl instanceof GoFishHumanPlayer)
         {
+            System.out.println("Do you have any: ");
         }
         else
         {
