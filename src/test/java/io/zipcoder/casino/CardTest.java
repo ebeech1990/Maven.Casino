@@ -19,6 +19,7 @@ public class CardTest
         Card.Rank expectedRank = ACE;
         Card.Suit expectedSuit = SPADES;
         Integer expectedVal = 11;
+        Integer expectedGetSuitValue = 1;
         Integer expectedSuitValue = 1;
 
         // WHEN
@@ -26,13 +27,15 @@ public class CardTest
         Card.Rank actualRank = testAce.rank();
         Card.Suit actualSuit = testAce.suit();
         Integer actualVal = testAce.rank().getRankValue();
-        Integer actualSuitValue = testAce.suit().getSuitValue();
+        Integer actualGetSuitValue = testAce.suit().getSuitValue();
+        Integer actualSuitValue = testAce.suit().SuitValue();
 
         // THEN
 
         assertEquals(expectedRank, actualRank);
         assertEquals(expectedSuit, actualSuit);
         assertEquals(expectedVal, actualVal);
+        assertEquals(expectedGetSuitValue, actualGetSuitValue);
         assertEquals(expectedSuitValue, actualSuitValue);
     }
 
