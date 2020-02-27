@@ -47,7 +47,7 @@ public class BlackJackGame extends CardTable
         for(int i = 0; i < hand.size(); i++)
             sum += hand.get(i);
         return sum;
-    }
+        }
 
         public Boolean is21(ArrayList<Integer> hand) {
             if (hand.equals(21)) {
@@ -55,15 +55,59 @@ public class BlackJackGame extends CardTable
             } else {return false;}
         }
 
-        public void playBlackJack() {
+        public void playerWins() {
+            pot += bet;
+            System.out.println("You Win! Would you like to continue playing?");
+            //input from player C/Q
+            continuePlaying ? setUp() : quitApp();
+        }
 
-        if (bjDealer.handSum.equals(21) {
+        public void dealerWins() {
             pot -= bet;
             System.out.println("Dealer wins - would you like to continue playing?");
             //input from player C/Q
             continuePlaying ? setUp() : quitApp();
-            }
         }
+        public void playerDecision() {
+            System.out.println("What would you like to do?");
+            input.equals("H") ? playerTurn() : dealerTurn();
+        }
+
+        public Integer playerTurn() {
+            bjPlayer.receiveCard(bjDeck.deal());
+            if (bjPlayer.handSum.is21()) {
+                playerWins();
+            } else if (bjPlayer.handSum > 21) {
+                dealerWins();
+            }else {playerDecision();
+                }
+        }
+
+        public void dealerTurn(); {
+
+        while (bjDealer.handSum < 17) {
+            bjDealer.receiveCard(bjDeck.deal());
+        }
+        if (bjDealer.handSum > 21) {
+            playerWins();
+        } else if (bjDealer.handSum() > bjPlayer.handSum()) {
+            dealerWins();
+        } else {
+            playerWins();
+        }
+        }
+
+            public void playBlackJack () {
+
+                if (bjDealer.handSum.is21()) {
+                    dealerWins();
+                }
+                if (bjPlayer.handSum.is21()) {
+                    playerWins();
+                }
+                System.out.println("Dealer is showing <face up card>);
+                playerDecision());
+            }
 
 
 //    public void playBlackJack() {
@@ -88,21 +132,10 @@ public class BlackJackGame extends CardTable
 //
 //
 //    }
+            public void displayCards ()
+            {
 
-    public void displayCards()
-    {
-
-    }
-
-    {
-
-    }
-
-
-
-
-
-
+            }
 
 }
 
