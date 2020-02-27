@@ -1,7 +1,7 @@
 package io.zipcoder.casino.games;
 
-import io.zipcoder.casino.CardTable;
-import io.zipcoder.casino.gamePlayers.GoFishHumanPlayer;
+//import io.zipcoder.casino.CardTable;
+//import io.zipcoder.casino.gamePlayers.GoFishHumanPlayer;
 
 //public class GoFishGame extends CardTable {
 
