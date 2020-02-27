@@ -1,11 +1,8 @@
 package io.zipcoder.casino.gamePlayers;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import io.zipcoder.casino.Card;
 import io.zipcoder.casino.Wallet;
 import org.junit.Test;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static io.zipcoder.casino.Card.Rank.*;
@@ -140,5 +137,39 @@ public class GoFishHumanPlayerTest
         assertEquals(expectedScore, actualScore);
         assertEquals(expectedFailure, actualFailure);
         assertEquals(expectedScoreAfterFailure, actualScoreAfterFailure);
+    }
+
+    @Test
+    public void fishForSixes()
+    {
+        Boolean expected = true;
+        ArrayList<Card> expectedDefenderHand = new ArrayList<Card>();
+        Card cardA = new Card(KING, CLUBS);
+        Card cardB = new Card(ACE, DIAMONDS);
+        Card cardC = new Card(SIX, HEARTS);
+        expectedDefenderHand.add(cardA);
+        expectedDefenderHand.add(cardB);
+
+        GoFishHumanPlayer attacker = new GoFishHumanPlayer("Taking Cards", new Wallet());
+        GoFishNPC defender = new GoFishNPC();
+
+
+        defender.receiveCard(cardA);
+        defender.receiveCard(cardB);
+        defender.receiveCard(cardC);
+
+        attacker.receiveCard(new Card(SIX, DIAMONDS));
+        attacker.receiveCard(new Card(SIX, CLUBS));
+        attacker.receiveCard(new Card(SIX, SPADES));
+
+        Boolean actual = attacker.fishing(defender, SIX);
+        Boolean actualTakeResult = attacker.takeSet(SIX);
+        ArrayList<Card> actualDefenderHand = defender.getHand();
+
+        assertFalse(defender.getHand().isEmpty());
+        assertEquals(expected, actual);
+        assertTrue(actualTakeResult);
+        assertTrue(attacker.getHand().isEmpty());
+        assertEquals(expectedDefenderHand, actualDefenderHand);
     }
 }

@@ -7,11 +7,12 @@ import io.zipcoder.casino.Wallet;
 import java.util.ArrayList;
 
 public class GoFishHumanPlayer extends CardPlayer {
-    private Integer score = 0;
+    private Integer score;
 
-    public GoFishHumanPlayer(String name, Wallet gamblingWallet){
+    public GoFishHumanPlayer(String name, Wallet gamblingWallet)
+    {
         super(name, gamblingWallet);
-
+        score = 0;
     }
 
     public Integer getScore()
