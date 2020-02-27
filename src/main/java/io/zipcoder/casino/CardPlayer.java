@@ -4,13 +4,15 @@ import java.util.ArrayList;
 
 public abstract class CardPlayer extends Player
 {
-    private ArrayList<PlayingCard> hand;
+    private ArrayList<Card> hand;
 
-    public CardPlayer(String name, Wallet gamblingWallet) {
+    public CardPlayer(String name, Wallet gamblingWallet)
+    {
         super(name, gamblingWallet);
     }
 
-    public ArrayList<PlayingCard> getHand(){
+    public ArrayList<Card> getHand()
+    {
         return this.hand;
     }
 
