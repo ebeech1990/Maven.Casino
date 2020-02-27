@@ -21,7 +21,7 @@ public class Wallet
     {
         if(addedChips < 0)
         {
-            LOGGER.log(Level.WARNING, "Attempted to deposit a negative value to wallet");
+            LOGGER.log(Level.WARNING, String.format("Attempted to deposit a negative value (%d) to wallet", addedChips));
             return -1;
         }
 
@@ -35,20 +35,19 @@ public class Wallet
 
         if(removedChips < 0)
         {
-            LOGGER.log(Level.WARNING, "Attempted to withdraw a negative value to wallet");
+            LOGGER.log(Level.WARNING, String.format("Attempted to withdraw a negative value (%d) to wallet", removedChips));
 
             return 0;
         }
         else if(removedChips > chipsBalance)
         {
-            LOGGER.log(Level.WARNING, "Attempted to overdraw wallet balance");
+            LOGGER.log(Level.WARNING, String.format("Attempted to overdraw (%d) wallet balance %d", removedChips, chipsBalance));
             return 0;
         }
         else
         {
             chipsBalance -= removedChips;
 
-            System.out.println("Blah blah");
             return removedChips;
         }
     }

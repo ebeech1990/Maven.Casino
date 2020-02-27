@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public abstract class CardPlayer extends Player
 {
-    private ArrayList<Card> hand;
+    // TODO: Fix after MVP -- I dislike package privacy level
+    protected ArrayList<Card> hand;
 
     public CardPlayer(String name, Wallet gamblingWallet)
     {

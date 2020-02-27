@@ -7,6 +7,17 @@ public class WalletTest {
     Wallet testWallet;
 
     @Test
+    public void emptyWallet()
+    {
+        Integer expected = 0;
+        testWallet = new Wallet();
+
+        Integer actual = testWallet.balance();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
     public void checkBalance()
     {
         // GIVEN
