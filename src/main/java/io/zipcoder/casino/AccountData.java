@@ -6,16 +6,20 @@ import java.util.List;
 public class AccountData {
 
     private Wallet userWallet;
+    private static Integer nextId = 1;
     private Integer id;
 
     //private Integer lastId = 0;
 
     public AccountData(){
         userWallet = new Wallet(200);
-        this.id = 1;
+
     }
 
-
+    public void setId() {
+        id = nextId;
+        nextId++;
+    }
 
     public Wallet getWallet() {
         return userWallet;
@@ -25,4 +29,7 @@ public class AccountData {
     public Integer getId() {
         return id;
     }
+
+
+
 }

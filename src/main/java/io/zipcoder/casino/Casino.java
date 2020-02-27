@@ -1,53 +1,104 @@
 package io.zipcoder.casino;
 
 
-import io.zipcoder.casino.utilities.Console;
-import io.zipcoder.casino.utilities.Console.*;
 import io.zipcoder.casino.utilities.Display;
 import io.zipcoder.casino.utilities.Prompt;
 
-public class Casino {
-private AccountData user;
+public class Casino implements Display {
+    private AccountData user;
 
 
 
-    public  Integer displayMenu(){
-    String welcome = "Welcome to our casino!\nPlease select an option:\n" +
-            "(1) Load Account\n(2) Create an account\n(3) Quit application";
-         Integer userChoice = Prompt.getInteger(welcome);
-         if(userChoice == 1) {
-            //Menu.listGames();
-            user = (AccountData) Persistence.readData();
-             System.out.println("Welcome back!" + user.getId()+ " " + user.getWallet());
-         }
-         else if(userChoice == 2) {
-            Casino.createAccount();
-
-         }
-         else if(userChoice == 3) {
-             Menu.quitApp();
-         }
-         else {
-             System.out.println("Invalid input");
-         }
-         return userChoice;
+    public Integer displayMenu() {
+        String welcome = "Welcome to our casino!\nPlease select an option:\n" +
+                "(1) Load Account\n(2) Create an account\n(3) Quit application";
+        Integer userChoice = Prompt.getInteger(welcome);
+        callOption(userChoice);
+        return userChoice;
     }
 
-    public static AccountData createAccount() {
+    public  void callOption(Integer userChoice) {
+
+        if (userChoice == 1) {
+            Integer userId = Prompt.getInteger("Please enter your ID");
+            user = Persistence.readData(userId);
+            System.out.println("Welcome back!" + user.getId() + " " + user.getWallet().chipsBalance);
+             listGames(user);
+        } else if (userChoice == 2) {
+            createAccount();
+
+        } else if (userChoice == 3) {
+
+            quitApp();
+        } else {
+            System.out.println("Invalid input");
+        }
+
+    }
+
+    public  AccountData createAccount() {
         AccountData newPlayer = new AccountData();
-        System.out.println(newPlayer.getId());
-        Persistence.gatherData(newPlayer);
+        newPlayer.setId();
+       // newPlayer = user;
+        user = newPlayer;
+
+        listGames(newPlayer);
+
         return newPlayer;
+        //Persistence.gatherData(newPlayer);
+
     }
 
+    public  void quitApp() {
+        Persistence.gatherData(user);
+        System.exit(0);
+
+
+    }
+
+    public void chooseGame(Integer choice){
+
+        if(choice == 4){
+            //blackJack();
+
+        }
+        else if(choice == 5) {
+            //goFish();
+        }
+        else if(choice == 6) {
+            //craps();
+        }
+        else if(choice == 7) {
+            //klondike();
+        }
+        else if(choice == 8) {
+            quitApp();
+        }
+        else {
+            System.out.println("Invalid input");
+        }
+
+    }
+
+    public  Integer listGames(AccountData user) {
+
+        Integer choice = Prompt.getInteger("(4) Blackjack\n(5) Go Fish\n(6) Craps\n" +
+                "(7) Klondike\n(8) Quit Application");
+
+
+        chooseGame(choice);
+        return choice;
+    }
 
     public static void main(String[] args) {
 
         // write your tests before you start fucking with this
-     
+
         Casino c = new Casino();
         c.displayMenu();
 
 
     }
+
+
 }
