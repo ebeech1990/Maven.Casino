@@ -14,22 +14,21 @@ import java.util.logging.Logger;
 public class BlackJackGame extends CardTable
 {
     private static final Logger LOGGER = Logger.getLogger(BlackJackGame.class.getName());
+
     Integer pot;// set to 0 for initial test;
     Integer tableMin;
     BlackJackHumanPlayer bjPlayer;
     BlackJackNPC bjDealer;
-
     Deck bjDeck;
 
-//    playerTurn();
 
     public BlackJackGame(BlackJackHumanPlayer user, Integer minAnte) {
+        super(new Deck());
         this.pot = 0;
         this.bjPlayer = user;
         tableMin = minAnte;
         bjDeck = new Deck();
         bjDealer = new BlackJackNPC();
-
     }
 
     public void setUp() {
@@ -59,7 +58,7 @@ public class BlackJackGame extends CardTable
             //pot += bet;
             System.out.println("You Win! Would you like to continue playing?");
             //input from player C/Q
-            //continuePlaying ? setUp() : quitApp();
+            //continuePlaying ? setUp() : leaveGame();
             LOGGER.log(Level.INFO, "player wins!" );
         }
 
@@ -67,10 +66,11 @@ public class BlackJackGame extends CardTable
             pot = 0;
             System.out.println("Dealer wins - would you like to continue playing?");
             //input from player C/Q
-           // continuePlaying ? setUp() : quitApp();
+           // continuePlaying ? setUp() : leaveGame();
             LOGGER.log(Level.INFO, "dealer wins!" );
         }
         public void playerDecision() {
+            System.out.println("Dealer is showing: " );
             System.out.println("What would you like to do?");
 //           input.equals("H") ? playerTurn() : dealerTurn();
             LOGGER.log(Level.INFO, "What would you like to do?" );
@@ -86,16 +86,46 @@ public class BlackJackGame extends CardTable
                 }
         }
 
-
-//        public Boolean instanceOfAce(ArrayList<Integer> hand); {
+//        public void dealerTurn() {
+//
+//        while (bjDealer.handSum < 17) {
+//            bjDealer.receiveCard(bjDeck.deal());
+//        }
+//        if (bjDealer.handSum > 21) {
+//            playerWins();
+//        } else if (bjDealer.handSum() > bjPlayer.handSum()) {
+//            dealerWins();
+//        } else {playerWins();
+//            }
+//        }
+////        public Boolean instanceOfAce(ArrayList<Integer> hand); {
 //            if ((handSum() > 21) && handSum().instanceof(ACE))
-//      }
- //
-
+//}
+//       public void playBlackJack () {
+//
+//            if (bjDealer.handSum.is21()) {
+//                 dealerWins();
+//            }
+//            if (bjPlayer.handSum.is21()) {
+//            playerWins();
+//            }
+//            System.out.println("Dealer is showing <face up card>");
+//            playerDecision();
+//            }
 //
             public String displayTable (){
             return null;
             }
+            public Boolean endGame() {return null;}
+
+            public void gameSetup() {
+
+            }
+
+    @Override
+    public void leaveGame() {
+
+    }
 
 }
 

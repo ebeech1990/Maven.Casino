@@ -1,6 +1,6 @@
 package io.zipcoder.casino.games;
 
-<<<<<<< HEAD
+
 //import io.zipcoder.casino.CardTable;
 //import io.zipcoder.casino.gamePlayers.GoFishHumanPlayer;
 
@@ -10,7 +10,7 @@ package io.zipcoder.casino.games;
 //    Deck goFishDeck = new Deck();
 
 //}
-=======
+
 import io.zipcoder.casino.*;
 import io.zipcoder.casino.gamePlayers.GoFishHumanPlayer;
 import io.zipcoder.casino.gamePlayers.GoFishNPC;
@@ -173,4 +173,3 @@ public class GoFishGame extends CardTable
         }
     }
 }
->>>>>>> 741f82efad06a764c1bb1d8327e01059e2c3a4c9
