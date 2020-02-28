@@ -66,7 +66,8 @@ public class Menu implements GameCreator{
 
         }
         else if(choice == 5) {
-            //goFish();
+            GoFishGame g = new GoFishGame(new Deck(), new GoFishHumanPlayer("James", new Wallet()), new GoFishNPC());
+            g.gameSetup();
         }
         else if(choice == 6) {
             //craps();

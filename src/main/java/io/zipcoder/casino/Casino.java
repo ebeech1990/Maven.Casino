@@ -14,16 +14,19 @@ public class Casino  {
         // write your tests before you start fucking with this
 
 
+
         //
         //AsciiHolder.mainAscii();
 
 
 
-//       Menu menu = new Menu();
-//       menu.displayMenu();
-        GoFishGame g = new GoFishGame(new Deck(), new GoFishHumanPlayer("James", new Wallet()), new GoFishNPC());
-        g.gameSetup();
             //AsciiHolder.printCard("K", "U+2662");
+
+        Menu menu = new Menu();
+        menu.displayMenu();
+//        GoFishGame g = new GoFishGame(new Deck(), new GoFishHumanPlayer("James", new Wallet()), new GoFishNPC());
+//        g.gameSetup();
+
     }
 
 
