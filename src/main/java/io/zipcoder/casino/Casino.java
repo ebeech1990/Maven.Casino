@@ -13,8 +13,6 @@ public class Casino  {
 
         // write your tests before you start fucking with this
 
-
-
         //
         //AsciiHolder.mainAscii();
 
@@ -26,10 +24,5 @@ public class Casino  {
         menu.displayMenu();
 //        GoFishGame g = new GoFishGame(new Deck(), new GoFishHumanPlayer("James", new Wallet()), new GoFishNPC());
 //        g.gameSetup();
-
     }
-
-
-
-
 }
