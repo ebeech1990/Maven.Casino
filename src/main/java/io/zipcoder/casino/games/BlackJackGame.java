@@ -8,11 +8,14 @@ import io.zipcoder.casino.utilities.Console;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static io.zipcoder.casino.Menu.quitApp;
 
 public class BlackJackGame extends CardTable
 {
+    private static final Logger LOGGER = Logger.getLogger(BlackJackGame.class.getName());
     Integer pot;// set to 0 for initial test;
     Integer tableMin;
     BlackJackHumanPlayer bjPlayer;
@@ -42,10 +45,12 @@ public class BlackJackGame extends CardTable
 //        bjDealer.receiveCard(bjDeck.deal()); bjDealer not set up yet
     }
 
+
     public Integer handSum(ArrayList<Card> hand) {
         Integer sum = 0;
         for(int i = 0; i < hand.size(); i++)
             sum += hand.get(i).rank().getRankValue();
+        LOGGER.log(Level.INFO, "sum is: " + sum);
         return sum;
         }
 
@@ -56,24 +61,27 @@ public class BlackJackGame extends CardTable
         }
 
         public void playerWins() {
-            pot += bet;
+            //pot += bet;
             System.out.println("You Win! Would you like to continue playing?");
             //input from player C/Q
-            continuePlaying ? setUp() : quitApp();
+            //continuePlaying ? setUp() : quitApp();
+            LOGGER.log(Level.INFO, "player wins!" );
         }
 
         public void dealerWins() {
             pot = 0;
             System.out.println("Dealer wins - would you like to continue playing?");
             //input from player C/Q
-            continuePlaying ? setUp() : quitApp();
+           // continuePlaying ? setUp() : quitApp();
+            LOGGER.log(Level.INFO, "dealer wins!" );
         }
         public void playerDecision() {
             System.out.println("What would you like to do?");
-            input.equals("H") ? playerTurn() : dealerTurn();
+           // input.equals("H") ? playerTurn() : dealerTurn();
+            LOGGER.log(Level.INFO, "What would you like to do?" );
         }
 
-        public Integer playerTurn() {
+        public void playerTurn() {
             bjPlayer.receiveCard(bjDeck.deal());
             if (bjPlayer.handSum.is21()) {
                 playerWins();
@@ -92,13 +100,12 @@ public class BlackJackGame extends CardTable
             playerWins();
         } else if (bjDealer.handSum() > bjPlayer.handSum()) {
             dealerWins();
-        } else {
-            playerWins();
+        } else {playerWins();
+            }
         }
-        }
-        public Boolean instanceOfAce(ArrayList<Integer> hand); {
-            if ((handSum() > 21) && handSum().instanceof(ACE))
-}
+//        public Boolean instanceOfAce(ArrayList<Integer> hand); {
+//            if ((handSum() > 21) && handSum().instanceof(ACE))
+//}
             public void playBlackJack () {
 
                 if (bjDealer.handSum.is21()) {
@@ -107,8 +114,8 @@ public class BlackJackGame extends CardTable
                 if (bjPlayer.handSum.is21()) {
                     playerWins();
                 }
-                System.out.println("Dealer is showing <face up card>);
-                playerDecision());
+                System.out.println("Dealer is showing <face up card>");
+                playerDecision();
             }
 
 
@@ -134,10 +141,10 @@ public class BlackJackGame extends CardTable
 //
 //
 //    }
-            public void displayCards ()
-            {
-
+            public String displayTable (){
+            return null;
             }
+
 
 }
 
