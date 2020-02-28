@@ -7,9 +7,8 @@ import io.zipcoder.casino.gamePlayers.GoFishNPC;
 import org.junit.Test;
 
 public class GoFishGameTest {
-    @Test
     public void playFish()
     {
-        GoFishGame testGame = new GoFishGame( new Deck(), new GoFishHumanPlayer("James", new Wallet()), new GoFishNPC());
+        GoFishGame testGame = new GoFishGame(new Deck(), new GoFishHumanPlayer("James", new Wallet()), new GoFishNPC());
     }
 }

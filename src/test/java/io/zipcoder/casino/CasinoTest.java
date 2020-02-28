@@ -41,17 +41,17 @@ public class CasinoTest{
     }
 
 
-    @Test
-    public void displayMenuTest() throws IOException  {
-
-        final String testString = "1";
-        provideInput(testString);
-                Casino myCasino = new Casino();
-        myCasino.displayMenu();
-
-
-        Assert.assertEquals(testString, getOutput());
-    }
+//    @Test
+//    public void displayMenuTest() throws IOException  {
+//
+//        final String testString = "1";
+//        provideInput(testString);
+//                Casino myCasino = new Casino();
+//        myCasino.displayMenu();
+//
+//
+//        Assert.assertEquals(testString, getOutput());
+//    }
 
 
 }
