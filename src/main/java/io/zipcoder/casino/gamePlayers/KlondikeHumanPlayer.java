@@ -14,6 +14,7 @@ public class KlondikeHumanPlayer extends DicePlayer
 
     private Integer score = 0;
     private ArrayList<Dice> hand;
+    private ArrayList<Integer> playerHand;
 
     public KlondikeHumanPlayer(String name, Wallet gamblingWallet) {
         super(name, gamblingWallet);
@@ -40,16 +41,17 @@ public class KlondikeHumanPlayer extends DicePlayer
         return playerHand;
     }
 
-    public Integer pairHuman(ArrayList<Integer> a)
+    public Integer pairHuman()
     {
+        //ArrayList<Integer> a = new ArrayList<>();
         score = 0;
         for (int i = 0; i < 4; i++)
         {
             for (int j = i + 1; j < 5; j++)
             {
-                if ((a.get(i).equals(a.get(j))) && (a.get(i) > score))
+                if ((playerHand.get(i).equals(playerHand.get(j))) && (playerHand.get(i) > score))
                 {
-                    score = a.get(i);
+                    score = playerHand.get(i);
                 }
             }
         }
