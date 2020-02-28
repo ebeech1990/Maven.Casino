@@ -3,10 +3,14 @@ package io.zipcoder.casino.games;
 import io.zipcoder.casino.*;
 import io.zipcoder.casino.gamePlayers.GoFishHumanPlayer;
 import io.zipcoder.casino.gamePlayers.GoFishNPC;
+import io.zipcoder.casino.utilities.Console;
+import io.zipcoder.casino.utilities.Prompt;
 
-import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static io.zipcoder.casino.Card.Rank.DEUCE;
+import static io.zipcoder.casino.Card.Rank.THREE;
 
 public class GoFishGame extends CardTable
 {
@@ -14,28 +18,48 @@ public class GoFishGame extends CardTable
     Player activePlayer;
     GoFishHumanPlayer human;
     GoFishNPC NPC;
+    Console console;
+    Prompt prompt;
 
     public GoFishGame(Deck goFishDeck, GoFishHumanPlayer goFishPlayer, GoFishNPC goFishNPC)
     {
         super(goFishDeck);
         human = goFishPlayer;
         NPC = goFishNPC;
-        activePlayer = human;
-
-        gameSetup();
+        activePlayer = NPC;
+        console = new Console(System.in, System.out);
+        prompt = new Prompt();
     }
 
     @Override
     public Boolean endGame() {
         if(human.getScore() >= 7)
         {
-            String.format("Congrats!  You won!  Would you like to play again?");
-            return true;
+            String userInput = console.getStringInput("You won!  Would you like to play again? (Y/n)");
+            if(userInput.equalsIgnoreCase("Y"))
+            {
+                gameSetup();
+                return true;
+            }
+            else
+            {
+                leaveGame();
+                return true;
+            }
         }
         else if(NPC.getScore() >= 7)
         {
-            String.format("You got outfished!  Would you like to try again?");
-            return true;
+            String userInput = console.getStringInput("You got outfished!  Would you like to play again? (Y/n)");
+            if(userInput.equalsIgnoreCase("Y"))
+            {
+                gameSetup();
+                return true;
+            }
+            else
+            {
+                leaveGame();
+                return true;
+            }
         }
         else
         {
@@ -58,7 +82,7 @@ public class GoFishGame extends CardTable
     @Override
     public void leaveGame()
     {
-
+        console.println("Thank you for playing!");
     }
 
     @Override
@@ -73,9 +97,9 @@ public class GoFishGame extends CardTable
         output.append(String.format("\n\nOpponent's Score: %s\nHAND\n", NPC.getScore()));
         for(Card card : NPC.getHand())
         {
-            output.append(String.format("%s\n", card.toString()));
+            output.append(String.format("%s\n", "[ ? ? ? ]"));
         }
-        LOGGER.log(Level.INFO, output.toString());
+        console.println(output.toString());
         return output.toString();
     }
 
@@ -85,13 +109,55 @@ public class GoFishGame extends CardTable
         // TODO: Really need to make NPC and Human just a GoFishPlayer, who implements AI behaviors
         if(playerInControl instanceof GoFishHumanPlayer)
         {
-            System.out.println("Do you have any: ");
+            if(endGame())
+            {
+                //stuff
+            }
+            else
+            {
+                Card.Rank chosenRank;
+                String userChoice = Prompt.getStringInput("What'cha looking for?");
+                if(userChoice.equalsIgnoreCase("two") || userChoice.equalsIgnoreCase("2"))
+                {
+                    chosenRank = DEUCE;
+                } else if(userChoice.equalsIgnoreCase("three") || userChoice.equalsIgnoreCase("3"))
+                {
+                    chosenRank = THREE;
+                } else if(userChoice.equalsIgnoreCase("four") || userChoice.equalsIgnoreCase("4"))
+                {
+
+                } else if(userChoice.equalsIgnoreCase("five") || userChoice.equalsIgnoreCase("5"))
+                {
+
+                } else if(userChoice.equalsIgnoreCase("six") || userChoice.equalsIgnoreCase("6"))
+                {
+
+                } else if(userChoice.equalsIgnoreCase("seven") || userChoice.equalsIgnoreCase("7"))
+                {
+
+                } else if(userChoice.equalsIgnoreCase("eight") || userChoice.equalsIgnoreCase("8"))
+                {
+
+                }
+            }
         }
         else
         {
-            if(((GoFishNPC)activePlayer).fishing(human, Card.Rank.DEUCE))
+            if(endGame())
             {
+            }
+
+            Prompt.getStringInput("Got any twos?");
+            if(((GoFishNPC)activePlayer).fishing(human, DEUCE))
+            {
+                Prompt.getStringInput("Here they are.");
                 takeTurn((CardPlayer)activePlayer);
+            }
+            else
+            {
+                Prompt.getStringInput("Go Fish!");
+                ((GoFishNPC) activePlayer).receiveCard(deck.deal());
+                takeTurn((GoFishHumanPlayer)human);
             }
         }
     }

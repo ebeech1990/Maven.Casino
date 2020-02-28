@@ -25,7 +25,6 @@ public class GoFishNPC extends CardPlayer {
     public Boolean fishing(GoFishHumanPlayer target, Card.Rank desiredRank)
     {
         // TODO: Actually do AI
-        desiredRank = Card.Rank.THREE;
         ArrayList<Card> stolenCards = target.fishedFrom(desiredRank);
 
         if(stolenCards.isEmpty())

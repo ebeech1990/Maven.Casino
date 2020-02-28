@@ -3,10 +3,13 @@ package io.zipcoder.casino.gamePlayers;
 import io.zipcoder.casino.Card;
 import io.zipcoder.casino.CardPlayer;
 import io.zipcoder.casino.Wallet;
-
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class GoFishHumanPlayer extends CardPlayer {
+public class GoFishHumanPlayer extends CardPlayer
+{
+    private static final Logger LOGGER = Logger.getLogger(GoFishHumanPlayer.class.getName());
     private Integer score;
 
     public GoFishHumanPlayer(String name, Wallet gamblingWallet)
@@ -41,7 +44,7 @@ public class GoFishHumanPlayer extends CardPlayer {
     {
         ArrayList<Card> fishedCards = new ArrayList<>();
 
-        for(Card card : this.getHand())
+        for(Card card : this.hand)
         {
             if(card.rank().equals(targetRank))
             {
@@ -49,7 +52,7 @@ public class GoFishHumanPlayer extends CardPlayer {
             }
         }
 
-        this.getHand().removeAll(fishedCards);
+        this.hand.removeAll(fishedCards);
         return fishedCards;
     }
 
