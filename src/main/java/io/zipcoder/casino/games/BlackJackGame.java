@@ -3,7 +3,6 @@ package io.zipcoder.casino.games;
 import io.zipcoder.casino.*;
 import io.zipcoder.casino.gamePlayers.BlackJackHumanPlayer;
 import io.zipcoder.casino.gamePlayers.BlackJackNPC;
-import io.zipcoder.casino.utilities.Console;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,7 +34,7 @@ public class BlackJackGame extends CardTable
     }
 
     public void setUp() {
-        Integer bet = 0; //place holder for user input
+        int bet = 0; //place holder for user input
  //     User input - What do you want to bet?
         if (bet < tableMin) {quitApp();}
         Collections.shuffle((List<?>) bjDeck);
@@ -48,16 +47,13 @@ public class BlackJackGame extends CardTable
 
     public Integer handSum(ArrayList<Card> hand) {
         Integer sum = 0;
-        for(int i = 0; i < hand.size(); i++)
-            sum += hand.get(i).rank().getRankValue();
+        for (Card card : hand) sum += card.rank().getRankValue();
         LOGGER.log(Level.INFO, "sum is: " + sum);
         return sum;
         }
 
         public Boolean is21(ArrayList<Card> hand) {
-            if (handSum(hand).equals(21)) {
-                return true;
-            } else {return false;}
+            return handSum(hand).equals(21);
         }
 
         public void playerWins() {
@@ -77,7 +73,7 @@ public class BlackJackGame extends CardTable
         }
         public void playerDecision() {
             System.out.println("What would you like to do?");
-           // input.equals("H") ? playerTurn() : dealerTurn();
+           input.equals("H") ? playerTurn() : dealerTurn();
             LOGGER.log(Level.INFO, "What would you like to do?" );
         }
 
@@ -91,7 +87,7 @@ public class BlackJackGame extends CardTable
                 }
         }
 
-        public void dealerTurn(); {
+        public void dealerTurn() {
 
         while (bjDealer.handSum < 17) {
             bjDealer.receiveCard(bjDeck.deal());
@@ -144,7 +140,6 @@ public class BlackJackGame extends CardTable
             public String displayTable (){
             return null;
             }
-
 
 }
 

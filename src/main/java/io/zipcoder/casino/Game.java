@@ -1,14 +1,10 @@
 package io.zipcoder.casino;
 
 
-public interface Game {
-
-    Boolean endGame();
-
-    void setUp();
-
-    void leaveGame();
-
+public interface Game
+{
+    public Boolean endGame();
+    public void gameSetup();
+    public void leaveGame();
 }
-
 

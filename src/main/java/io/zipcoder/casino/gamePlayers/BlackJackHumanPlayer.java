@@ -6,7 +6,7 @@ import io.zipcoder.casino.Wallet;
 public class BlackJackHumanPlayer extends CardPlayer {
 
 
-    public BlackJackHumanPlayer(String name, Wallet gamblingWallet) {
+    public BlackJackHumanPlayer(String name, int gamblingWallet) {
         super(name, gamblingWallet);
     }
 

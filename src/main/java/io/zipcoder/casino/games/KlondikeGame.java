@@ -1,4 +1,6 @@
 package io.zipcoder.casino.games;
 
-public class KlondikeGame {
+public class KlondikeGame
+{
+
 }

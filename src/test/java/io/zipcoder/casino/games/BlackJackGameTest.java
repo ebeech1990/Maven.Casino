@@ -8,8 +8,6 @@ import org.junit.Test;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static org.junit.Assert.*;
-
 public class BlackJackGameTest {
 
     private static final Logger LOGGER = Logger.getLogger(BlackJackGameTest.class.getName());
@@ -30,4 +28,8 @@ public class BlackJackGameTest {
     }
 
 
+    @Test
+    public void testBjgame2() {
+
+    }
 }
