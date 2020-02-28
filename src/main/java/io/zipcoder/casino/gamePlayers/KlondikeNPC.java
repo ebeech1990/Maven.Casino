@@ -38,4 +38,111 @@ public class KlondikeNPC extends DicePlayer
 
         return opponentHand;
     }
+
+    public Integer pairNPC(ArrayList<Integer> a)
+    {
+        score = 0;
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = i + 1; j < 5; j++)
+            {
+                if ((a.get(i).equals(a.get(j))) && (a.get(i) > score))
+                {
+                    score = a.get(i);
+                }
+            }
+        }
+        if (score == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return score;
+        }
+    }
+
+    public Integer twoPairNPC(ArrayList<Integer> a) {
+        score = 0;
+        int count = 0;
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = i + 1; j < 5; j++)
+            {
+                if ((a.get(i).equals(a.get(j))) && (a.get(i) != score))
+                {
+                    count++;
+                    if (a.get(i) > score)
+                    {
+                        score = a.get(i);
+                    }
+                }
+            }
+        }
+        if (count == 2)
+        {
+            return score;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    public Integer tripleNPC(ArrayList<Integer> a)
+    {
+        score = 0;
+        int count = 0;
+        for (int i = 0; i < 4; i++)
+        {
+            if (count == 2)
+            {
+                score = a.get(i);
+            }
+            count = 0;
+            for (int j = i + 1; j < 5; j++)
+            {
+                if (a.get(i).equals(a.get(j)))
+                {
+                    count++;
+                }
+            }
+        }
+        return score;
+    }
+
+    public Integer fullHouseNPC(ArrayList<Integer> a)
+    {
+        score = 0;
+        int count = 0;
+        for (int i = 0; i < 4; i++)
+        {
+            if (count == 2)
+            {
+                score = a.get(i);
+            }
+            count = 0;
+            for (int j = i + 1; j < 5; j++)
+            {
+                if (a.get(i).equals((a.get(j))))
+                {
+                    count++;
+                }
+            }
+        }
+        if (score != 0)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = i + 1; j < 5; j++)
+                {
+                    if ((a.get(i).equals(a.get(j))) && (a.get(i) != score))
+                    {
+                        return score;
+                    }
+                }
+            }
+        }
+        return 0;
+    }
 }
