@@ -1,6 +1,5 @@
 package io.zipcoder.casino.gamePlayers;
 
-import io.zipcoder.casino.CardPlayer;
 import io.zipcoder.casino.Wallet;
 
 public class BlackJackHumanPlayer extends CardPlayer {

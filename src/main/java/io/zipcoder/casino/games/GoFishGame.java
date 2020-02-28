@@ -1,12 +1,12 @@
 package io.zipcoder.casino.games;
 
 import io.zipcoder.casino.*;
+import io.zipcoder.casino.gamePlayers.CardPlayer;
 import io.zipcoder.casino.gamePlayers.GoFishHumanPlayer;
 import io.zipcoder.casino.gamePlayers.GoFishNPC;
 import io.zipcoder.casino.utilities.Console;
 import io.zipcoder.casino.utilities.Prompt;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static io.zipcoder.casino.Card.Rank.*;
@@ -106,79 +106,52 @@ public class GoFishGame extends CardTable
     {
         displayTable();
         // TODO: Really need to make NPC and Human just a GoFishPlayer, who implements AI behaviors
-        if(playerInControl instanceof GoFishHumanPlayer)
-        {
-            if(endGame())
-            {
-                //stuff
-            }
-            else
-            {
-                Card.Rank chosenRank = DEUCE;
-                String userChoice = Prompt.getStringInput("What'cha looking for?");
-                if(userChoice.equalsIgnoreCase("two") || userChoice.equals("2"))
-                {
-                    chosenRank = DEUCE;
-                } else if(userChoice.equalsIgnoreCase("three") || userChoice.equals("3"))
-                {
-                    chosenRank = THREE;
-                } else if(userChoice.equalsIgnoreCase("four") || userChoice.equals("4"))
-                {
-                    chosenRank = FOUR;
-                } else if(userChoice.equalsIgnoreCase("five") || userChoice.equals("5"))
-                {
-                    chosenRank = FIVE;
-                } else if(userChoice.equalsIgnoreCase("six") || userChoice.equals("6"))
-                {
-                    chosenRank = SIX;
-                } else if(userChoice.equalsIgnoreCase("seven") || userChoice.equals("7"))
-                {
-                    chosenRank = SEVEN;
-                } else if(userChoice.equalsIgnoreCase("eight") || userChoice.equals("8"))
-                {
-                    chosenRank = EIGHT;
-                } else if(userChoice.equalsIgnoreCase("nine") || userChoice.equals("9"))
-                {
-                    chosenRank = NINE;
-                } else if(userChoice.equalsIgnoreCase("ten") || userChoice.equals("10"))
-                {
-                    chosenRank = TEN;
-                } else if(userChoice.equalsIgnoreCase("jack") || userChoice.equals("j"))
-                {
-                    chosenRank = JACK;
-                }
-                else if(userChoice.equalsIgnoreCase("queen") || userChoice.equals("q"))
-                {
-                    chosenRank = QUEEN;
-                }
-                else if(userChoice.equalsIgnoreCase("king") || userChoice.equals("k"))
-                {
-                    chosenRank = KING;
-                }
-                else if(userChoice.equalsIgnoreCase("ace") || userChoice.equals("a"))
-                {
-                    chosenRank = ACE;
-                } else
-                {
-                    console.println("Please input a singular noun (Such as ten or ace)");
-                }
+        if(playerInControl instanceof GoFishHumanPlayer) {
+            endGame();
 
-                if(human.fishing(NPC, chosenRank))
-                {
-                    console.println("Here are your " + chosenRank);
-                    if(human.takeSet(chosenRank))
-                    {
-                        console.println("Human claims " + chosenRank);
-                    }
-                    takeTurn((CardPlayer)activePlayer);
+            Card.Rank chosenRank = null;
+            String userChoice = Prompt.getStringInput("What'cha looking for?");
+            if (userChoice.equalsIgnoreCase("two") || userChoice.equals("2")) {
+                chosenRank = DEUCE;
+            } else if (userChoice.equalsIgnoreCase("three") || userChoice.equals("3")) {
+                chosenRank = THREE;
+            } else if (userChoice.equalsIgnoreCase("four") || userChoice.equals("4")) {
+                chosenRank = FOUR;
+            } else if (userChoice.equalsIgnoreCase("five") || userChoice.equals("5")) {
+                chosenRank = FIVE;
+            } else if (userChoice.equalsIgnoreCase("six") || userChoice.equals("6")) {
+                chosenRank = SIX;
+            } else if (userChoice.equalsIgnoreCase("seven") || userChoice.equals("7")) {
+                chosenRank = SEVEN;
+            } else if (userChoice.equalsIgnoreCase("eight") || userChoice.equals("8")) {
+                chosenRank = EIGHT;
+            } else if (userChoice.equalsIgnoreCase("nine") || userChoice.equals("9")) {
+                chosenRank = NINE;
+            } else if (userChoice.equalsIgnoreCase("ten") || userChoice.equals("10")) {
+                chosenRank = TEN;
+            } else if (userChoice.equalsIgnoreCase("jack") || userChoice.equals("j")) {
+                chosenRank = JACK;
+            } else if (userChoice.equalsIgnoreCase("queen") || userChoice.equals("q")) {
+                chosenRank = QUEEN;
+            } else if (userChoice.equalsIgnoreCase("king") || userChoice.equals("k")) {
+                chosenRank = KING;
+            } else if (userChoice.equalsIgnoreCase("ace") || userChoice.equals("a")) {
+                chosenRank = ACE;
+            } else {
+                console.println("Please input a singular noun (Such as ten or ace)");
+            }
+
+            if (human.fishing(NPC, chosenRank)) {
+                console.println("Here are your " + chosenRank);
+                if (human.takeSet(chosenRank)) {
+                    console.println("Human claims " + chosenRank);
                 }
-                else
-                {
-                    Prompt.getStringInput("Go Fish!");
-                    Card drawnCard = deck.deal();
-                    human.receiveCard(drawnCard);
-                    takeTurn(NPC);
-                }
+                takeTurn((CardPlayer) activePlayer);
+            } else {
+                Prompt.getStringInput("Go Fish!");
+                Card drawnCard = deck.deal();
+                human.receiveCard(drawnCard);
+                takeTurn(NPC);
             }
         }
         else
