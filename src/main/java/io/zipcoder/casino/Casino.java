@@ -24,6 +24,5 @@ public class Casino  {
         menu.displayMenu();
 //        GoFishGame g = new GoFishGame(new Deck(), new GoFishHumanPlayer("James", new Wallet()), new GoFishNPC());
 //        g.gameSetup();
-
     }
 }
