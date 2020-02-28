@@ -13,11 +13,8 @@ public class Casino  {
 
         // write your tests before you start fucking with this
 
-        //Menu menu = new Menu();
-        //menu.displayMenu();
-        GoFishGame g = new GoFishGame(new Deck(), new GoFishHumanPlayer("James", new Wallet()), new GoFishNPC());
-        g.gameSetup();
+        Menu menu = new Menu();
+        menu.displayMenu();
+
     }
-
-
 }
