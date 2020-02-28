@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static io.zipcoder.casino.Menu.quitApp;
 
 public class BlackJackGame extends CardTable
 {
@@ -36,7 +35,7 @@ public class BlackJackGame extends CardTable
     public void setUp() {
         int bet = 0; //place holder for user input
  //     User input - What do you want to bet?
-        if (bet < tableMin) {quitApp();}
+        if (bet < tableMin) {leaveGame();}
         Collections.shuffle((List<?>) bjDeck);
         bjPlayer.receiveCard(bjDeck.deal());
 //        bjDealer.receiveCard(bjDeck.deal()); bjDealer not set up yet
@@ -52,9 +51,9 @@ public class BlackJackGame extends CardTable
         return sum;
         }
 
-        public Boolean is21(ArrayList<Card> hand) {
-            return handSum(hand).equals(21);
-        }
+//        public Boolean is21(ArrayList<Card> hand) {
+//            return handSum(hand).equals(21);
+//        }
 
         public void playerWins() {
             //pot += bet;
@@ -73,70 +72,27 @@ public class BlackJackGame extends CardTable
         }
         public void playerDecision() {
             System.out.println("What would you like to do?");
-           input.equals("H") ? playerTurn() : dealerTurn();
+//           input.equals("H") ? playerTurn() : dealerTurn();
             LOGGER.log(Level.INFO, "What would you like to do?" );
         }
 
         public void playerTurn() {
             bjPlayer.receiveCard(bjDeck.deal());
-            if (bjPlayer.handSum.is21()) {
+            if (this.handSum(bjPlayer.getHand()) == 21) {
                 playerWins();
-            } else if (bjPlayer.handSum > 21) {
+            } else if (this.handSum(bjPlayer.getHand()) > 21) {
                 dealerWins();
             }else {playerDecision();
                 }
         }
 
-        public void dealerTurn() {
 
-        while (bjDealer.handSum < 17) {
-            bjDealer.receiveCard(bjDeck.deal());
-        }
-        if (bjDealer.handSum > 21) {
-            playerWins();
-        } else if (bjDealer.handSum() > bjPlayer.handSum()) {
-            dealerWins();
-        } else {playerWins();
-            }
-        }
 //        public Boolean instanceOfAce(ArrayList<Integer> hand); {
 //            if ((handSum() > 21) && handSum().instanceof(ACE))
-//}
-            public void playBlackJack () {
+//      }
+ //
 
-                if (bjDealer.handSum.is21()) {
-                    dealerWins();
-                }
-                if (bjPlayer.handSum.is21()) {
-                    playerWins();
-                }
-                System.out.println("Dealer is showing <face up card>");
-                playerDecision();
-            }
-
-
-//    public void playBlackJack() {
-////        C = continue playing       Q = exit game
-//        if (bjDealer.handSum() == 21) {
-//            pot -= bet;
-////          "Dealer wins - would you like to continue playing?" C/Q
-//            continuePlaying ? setUp() : quitApp();
-//        }
-//        if (bjPlayer.handSum == 21) {
-//            pot += bet;
-////          "You Win! Would you like to continue playing?" Q/C
-//            continuePlaying ? setUp() : quitApp();
-//        }
-////       "Dealer is showing <face up card> - what would you like to do?"
-////          "Hit" or "Stand"
-//        if (input == "H") {bjPlayer.receiveCard(bjDeck.deal());}
 //
-//        if (bjDealer.handSum < 17) {
-//            bjDealer.receiveCard(bjDeck.deal());
-//        }
-//
-//
-//    }
             public String displayTable (){
             return null;
             }

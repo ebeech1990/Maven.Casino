@@ -18,6 +18,8 @@ public class Deck {
                 deckOfCards.push(cardForDeck);
             }
         }
+
+        Collections.shuffle(deckOfCards);
     }
 
     public Card deal()
