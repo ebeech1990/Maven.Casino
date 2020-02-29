@@ -40,6 +40,67 @@ public class ConsoleDisplays {
 
     }
 
+    public static void blackJackAscii() {
+        ASCIIArtGenerator artGen = new ASCIIArtGenerator();
+
+        System.out.println(" ");
+        try {
+            artGen.printTextArt("B L A C K  J A C K", ASCIIArtGenerator.ART_SIZE_SMALL, ASCIIArtGenerator.ASCIIArtFont.ART_FONT_MONO, "♠");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(" ");
+        System.out.println(" ");
+
+    }
+
+    public static void goFishAscii() {
+        ASCIIArtGenerator artGen = new ASCIIArtGenerator();
+
+        System.out.println(" ");
+        try {
+            artGen.printTextArt("G O  F I S H", ASCIIArtGenerator.ART_SIZE_SMALL, ASCIIArtGenerator.ASCIIArtFont.ART_FONT_MONO, "♦");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(" ");
+        System.out.println(" ");
+
+    }
+
+    public static void crapsAscii() {
+        ASCIIArtGenerator artGen = new ASCIIArtGenerator();
+
+        System.out.println(" ");
+        try {
+            artGen.printTextArt("C R A P S", ASCIIArtGenerator.ART_SIZE_SMALL, ASCIIArtGenerator.ASCIIArtFont.ART_FONT_MONO, "❤");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(" ");
+        System.out.println(" ");
+
+    }
+
+    public static void klondikeAscii() {
+        ASCIIArtGenerator artGen = new ASCIIArtGenerator();
+
+        System.out.println(" ");
+        try {
+            artGen.printTextArt("K L O N D I K E", ASCIIArtGenerator.ART_SIZE_SMALL, ASCIIArtGenerator.ASCIIArtFont.ART_FONT_MONO, "♣");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(" ");
+        System.out.println(" ");
+
+    }
+
+
     public static String mainMenu(){
         return "Welcome to our casino!\nPlease select an option:\n" +
                 "(1) Load Account\n(2) Create an account\n(3) Quit application";

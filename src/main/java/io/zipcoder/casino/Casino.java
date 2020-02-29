@@ -9,7 +9,7 @@ public class Casino  {
 
 
 
-        //ConsoleDisplays.mainAscii();
+        ConsoleDisplays.blackJackAscii();
 
 
 
