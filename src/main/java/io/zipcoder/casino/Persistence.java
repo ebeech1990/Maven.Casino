@@ -46,6 +46,19 @@ public class Persistence {
 
     }
 
+    public static Integer highestID(){
+        ArrayList <JSONObject> dataOnFile = readFile();
+        Integer currentHighest = Integer.MIN_VALUE;
+        for(JSONObject obj : dataOnFile){
+           String s = (String) obj.get("id");
+            if(Integer.parseInt(s) > currentHighest) {
+                currentHighest = Integer.parseInt(s);
+            }
+        }
+        return currentHighest;
+    }
+
+
     public static Boolean doesUserExist(AccountData ad){
         ArrayList <JSONObject> dataOnFile = readFile();
         for(JSONObject obj : dataOnFile){
@@ -91,13 +104,12 @@ public class Persistence {
        }
 
 
-        public static AccountData readData(Integer id) {
+        public static AccountData readData(Integer id) throws Exception {
             AccountData account = new AccountData();
 
                 ArrayList <JSONObject> dataOnFile = readFile();
                 for(JSONObject obj : dataOnFile){
                     if(obj.get("id").equals(id.toString())){
-                        System.out.println(obj.get("id"));
                         account.loadId(id);
                         String s = (String) obj.get("wallet");
                         account.setChips(Integer.parseInt(s) );

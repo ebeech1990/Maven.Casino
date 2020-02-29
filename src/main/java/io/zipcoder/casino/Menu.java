@@ -3,16 +3,16 @@ package io.zipcoder.casino;
 import io.zipcoder.casino.utilities.Prompt;
 
 public class Menu implements GameCreator{
-
+    private String message;
     private AccountData user;
     boolean running =true;
 
 
-    public void displayMenu() {
+    public void displayMenu()  {
         while (running) {
-            String welcome = "Welcome to our casino!\nPlease select an option:\n" +
-                    "(1) Load Account\n(2) Create an account\n(3) Quit application";
-            Integer userChoice = Prompt.getInteger(welcome);
+            ConsoleDisplays.mainAscii();
+            message = ConsoleDisplays.mainMenu();
+            Integer userChoice = Prompt.getInteger(message);
             callOption(userChoice);
         }
     }
@@ -20,16 +20,21 @@ public class Menu implements GameCreator{
     public  void callOption(Integer userChoice) {
 
         if (userChoice == 1) {
-            Integer userId = Prompt.getInteger("Please enter your ID");
-            user = Persistence.readData(userId);
-            System.out.println("Welcome back!" + user.getId() + " " + user.getWallet().chipsBalance);
+            message = ConsoleDisplays.enterID();
+            Integer userId = Prompt.getInteger(message);
+            try {
+                user = Persistence.readData(userId);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            System.out.println("Welcome back! User " + user.getId() + " Chips: " + user.getWallet().chipsBalance);
             listGames(user);
         } else if (userChoice == 2) {
             createAccount();
 
         } else if (userChoice == 3) {
 
-            quitApp();
+            System.exit(0);
         } else {
             System.out.println("Invalid input");
         }
@@ -38,15 +43,10 @@ public class Menu implements GameCreator{
 
     public  AccountData createAccount() {
         AccountData newPlayer = new AccountData();
-        newPlayer.setId();
-        // newPlayer = user;
         user = newPlayer;
-
+        System.out.println(user.getId());
         listGames(newPlayer);
-
         return newPlayer;
-        //Persistence.gatherData(newPlayer);
-
     }
 
     public  void quitApp() {
@@ -87,17 +87,13 @@ public class Menu implements GameCreator{
 
     }
 
-    public  Integer listGames(AccountData user) {
-
-        Integer choice = Prompt.getInteger("(4) Blackjack\n(5) Go Fish\n(6) Craps\n" +
-                "(7) Klondike\n(8) Quit Application");
-
-
-        chooseGame(choice);
-        return choice;
+    public  void listGames(AccountData user) {
+        while (running) {
+            message = ConsoleDisplays.gamesMenu();
+            Integer choice = Prompt.getInteger(message);
+            chooseGame(choice);
+        }
     }
-
-
 
 
 }

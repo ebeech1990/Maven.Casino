@@ -6,20 +6,16 @@ import java.util.List;
 public class AccountData {
 
     private Wallet userWallet;
-    private static Integer nextId = 5;
     private Integer id;
 
-    //private Integer lastId = 0;
 
     public AccountData(){
-
+       Integer highestID = Persistence.highestID();
+        this.id = highestID+1;
         userWallet = new Wallet(200);
 
     }
 
-    public void setId() {
-        this.id = 2;
-    }
 
     public Integer loadId(Integer id) {
         this.id = id;
