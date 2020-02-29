@@ -1,8 +1,5 @@
 package io.zipcoder.casino;
 
-import io.zipcoder.casino.gamePlayers.GoFishHumanPlayer;
-import io.zipcoder.casino.gamePlayers.GoFishNPC;
-import io.zipcoder.casino.games.GoFishGame;
 import io.zipcoder.casino.utilities.Prompt;
 
 public class Menu implements GameCreator{
@@ -66,8 +63,7 @@ public class Menu implements GameCreator{
 
         }
         else if(choice == 5) {
-            GoFishGame g = new GoFishGame(new Deck(), new GoFishHumanPlayer("James", new Wallet()), new GoFishNPC());
-            g.gameSetup();
+            //goFish();
         }
         else if(choice == 6) {
             //craps();

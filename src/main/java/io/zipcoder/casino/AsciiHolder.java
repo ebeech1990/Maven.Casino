@@ -2,6 +2,8 @@ package io.zipcoder.casino;
 
 public class AsciiHolder {
 
+    private static final String U = "";
+
     public static void mainAscii() throws Exception {
         ASCIIArtGenerator artGen = new ASCIIArtGenerator();
         System.out.println();
@@ -15,9 +17,25 @@ public class AsciiHolder {
     |     |
      - - -
      */
-//    public static void printCard(String value, String suite){
-//        System.out.print(" - - -\n|  " +value+ "  |\n|  "+suite.charAt()+"  |\n|  "+value+"  |\n - - -");
-//    }
+    public static void printCard(String value, String suite){
+        Character symbol = '0';
+        if(suite.equals("S")) {
+            symbol = '\u2660';
+        }
+        else if(suite.equals("D")){
+            symbol = '\u2666';
+        }
+        else if(suite.equals("H")){
+            symbol = '\u2764';
+        }
+        else if(suite.equals("C")){
+            symbol = '\u2663';
+        }
+        else{
+            System.out.println("invalid input");
+        }
+        System.out.print(" - - -\n|  " +value+ "  |\n|  "+symbol+"  |\n|  "+value+"  |\n - - -");
+    }
 //    public String toString()
 //    {
 //        return rank + " of " + suit + "(" + cardValue() + ")";

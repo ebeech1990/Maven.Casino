@@ -20,7 +20,7 @@ public class Casino  {
 
 
 
-            //AsciiHolder.printCard("K", "U+2662");
+            //AsciiHolder.printCard("K", "S");
 
         Menu menu = new Menu();
         menu.displayMenu();
