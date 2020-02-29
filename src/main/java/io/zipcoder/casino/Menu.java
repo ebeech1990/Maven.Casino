@@ -74,6 +74,13 @@ public class Menu implements GameCreator{
         else if(choice == 8) {
             quitApp();
         }
+        /////////////////////
+        else if(choice == 9) {
+            user.getWallet().withdraw(100);
+            System.out.println(user.getWallet().chipsBalance);
+            listGames(user);
+        }
+        ///////////////////
         else {
             System.out.println("Invalid input");
         }

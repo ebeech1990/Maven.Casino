@@ -1,113 +1,114 @@
 package io.zipcoder.casino;
-import com.google.gson.*;
-//import com.google.gson.stream.JsonReader;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import javax.json.Json;
-import javax.json.JsonArray;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
-import javax.json.JsonValue;
+
 import java.io.*;
-import java.lang.reflect.Type;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+
 import java.util.*;
 
 public class Persistence {
 
-    private static FileWriter file;
 
-    public static void gatherData(AccountData ad)  {
-        try {
-            FileWriter fw = new FileWriter("/Users/ebeech/Downloads/casino.txt", true);
-            BufferedWriter bw = new BufferedWriter(fw);
-            JSONObject obj = new JSONObject();
-            obj.put("id", ad.getId().toString());
-            obj.put("wallet", ad.getWallet().chipsBalance.toString());
-            bw.write(String.valueOf(obj));
-            bw.newLine();
-            bw.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+    public static void gatherData(AccountData ad) {
+
+        if(doesUserExist(ad)) {
+           ArrayList <JSONObject> updatedList = updateExistingUser(ad);
+
+            try {
+                FileWriter fw = new FileWriter("/Users/ebeech/Downloads/casino.txt");
+                BufferedWriter bw = new BufferedWriter(fw);
+                for (JSONObject obj : updatedList) {
+                    bw.write(String.valueOf(obj));
+                    bw.newLine();
+                }
+                bw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-//        try {
-//            RandomAccessFile randomAccessFile = new RandomAccessFile("/Users/ebeech/Downloads/casino.txt", "rw");
-//            long pos = randomAccessFile.length();
-//            while (randomAccessFile.length() > 0) {
-//                pos--;
-//                randomAccessFile.seek(pos);
-//                if (randomAccessFile.readByte() == ']') {
-//                    randomAccessFile.seek(pos);
-//                    break;
-//                }
-//            }
-//            JSONObject obj = new JSONObject();
-//            obj.put("id", ad.getId().toString());
-//            obj.put("wallet", ad.getWallet().chipsBalance.toString());
-//            String jsonElement = obj.toJSONString();
-//            randomAccessFile.writeBytes("," + jsonElement + "]}");
-//            randomAccessFile.close();
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-        //{"user":[{"wallet":200,"id":5},{"wallet":200,"id":6},{"wallet":200,"id":4}]}
+        else{
+            try {
+                FileWriter fw = new FileWriter("/Users/ebeech/Downloads/casino.txt", true);
+                BufferedWriter bw = new BufferedWriter(fw);
+                JSONObject newUser = new JSONObject();
+                newUser.put("id", ad.getId().toString());
+                newUser.put("wallet", ad.getWallet().chipsBalance.toString());
+                bw.write(String.valueOf(newUser));
+                bw.newLine();
+                bw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
 
     }
 
+    public static Boolean doesUserExist(AccountData ad){
+        ArrayList <JSONObject> dataOnFile = readFile();
+        for(JSONObject obj : dataOnFile){
+            if(ad.getId().toString().equals(obj.get("id"))) {
+                return true;
+            }
+        }
+        return false;
+    }
 
+        public static ArrayList <JSONObject> updateExistingUser(AccountData ad){
+            ArrayList <JSONObject> dataOnFile = readFile();
+            for(JSONObject obj : dataOnFile){
+                if(ad.getId().toString().equals(obj.get("id"))){
+
+                    obj.replace("wallet", ad.getWallet().balance().toString());
+                }
+            }
+            return dataOnFile;
+        }
+
+
+
+       public static ArrayList<JSONObject> readFile(){
+           ArrayList<JSONObject> dataOnFile=new ArrayList<>();
+           JSONObject individualAccount;
+           String fileName = "/Users/ebeech/Downloads/casino.txt";
+           String line = null;
+           try {
+               FileReader fileReader = new FileReader(fileName);
+               BufferedReader bufferedReader = new BufferedReader(fileReader);
+               while((line = bufferedReader.readLine()) != null) {
+                   individualAccount = (JSONObject) new JSONParser().parse(line);
+                   dataOnFile.add(individualAccount);
+               }
+               bufferedReader.close();
+           } catch(FileNotFoundException ex) {
+        System.out.println("Unable to open file '" + fileName + "'");
+    } catch(IOException | ParseException ex) {
+        System.out.println("Error reading file '" + fileName + "'");
+    }
+           return dataOnFile;
+       }
 
 
         public static AccountData readData(Integer id) {
             AccountData account = new AccountData();
-            ArrayList<JSONObject> json=new ArrayList<JSONObject>();
-            JSONObject obj;
-            // The name of the file to open.
-            String fileName = "/Users/ebeech/Downloads/casino.txt";
 
-            // This will reference one line at a time
-            String line = null;
-
-            try {
-                // FileReader reads text files in the default encoding.
-                FileReader fileReader = new FileReader(fileName);
-
-                // Always wrap FileReader in BufferedReader.
-                BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-                while((line = bufferedReader.readLine()) != null) {
-                    obj = (JSONObject) new JSONParser().parse(line);
-                    json.add(obj);
+                ArrayList <JSONObject> dataOnFile = readFile();
+                for(JSONObject obj : dataOnFile){
                     if(obj.get("id").equals(id.toString())){
+                        System.out.println(obj.get("id"));
                         account.loadId(id);
                         String s = (String) obj.get("wallet");
                         account.setChips(Integer.parseInt(s) );
                         return account;
                     }
-//                    System.out.println((String)obj.get("id")+":"+
-//                            (String)obj.get("wallet"));
                 }
+            Menu menu = new Menu();
+            System.out.println("account not found");
+            menu.displayMenu();
 
-                // Always close files.
-                bufferedReader.close();
-            }catch(FileNotFoundException ex) {
-                System.out.println("Unable to open file '" + fileName + "'");
-            }
-            catch(IOException ex) {
-                System.out.println("Error reading file '" + fileName + "'");
-                // Or we could just do this:
-                // ex.printStackTrace();
-            } catch (ParseException e) {
-                Menu menu = new Menu();
-                System.out.println("account not found");
-                menu.displayMenu();
-            }
             return null;
         }
-        }
+}
 
