@@ -1,5 +1,7 @@
 package io.zipcoder.casino;
 
+import com.sun.xml.internal.ws.policy.EffectiveAlternativeSelector;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +19,7 @@ public class Hand {
         currentHand.addAll(cardsForHand);
     }
 
-    public ArrayList<Card> getCurrentHand()
+    public ArrayList<Card> getHand()
     {
         return currentHand;
     }
@@ -30,8 +32,14 @@ public class Hand {
 
     public Boolean removeCard(Card cardToRemove)
     {
-        currentHand.remove(cardToRemove);
-
-        return (!currentHand.contains(cardToRemove));
+        if(currentHand.contains(cardToRemove))
+        {
+            currentHand.remove(cardToRemove);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
