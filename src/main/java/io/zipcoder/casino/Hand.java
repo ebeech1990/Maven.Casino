@@ -11,17 +11,20 @@ public class Hand {
     public Hand()
     {
         currentHand = new ArrayList<>();
+        handSuitInfo = new HashMap<>();
     }
 
     public Hand(List<Card> cardsForHand)
     {
         currentHand = new ArrayList<>();
+        handSuitInfo = new HashMap<>();
         currentHand.addAll(cardsForHand);
     }
 
     public Hand(Card ... startingCards)
     {
         currentHand = new ArrayList<>();
+        handSuitInfo = new HashMap<>();
         for(Card card : startingCards)
         {
             currentHand.add(card);
