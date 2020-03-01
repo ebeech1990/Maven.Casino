@@ -57,7 +57,7 @@ public class Menu implements GameCreator{
     }
 
     public void chooseGame(Integer choice){
-
+        System.out.println("User id : " + user.getId());
         if(choice == 4){
             //blackJack();
 
@@ -74,13 +74,7 @@ public class Menu implements GameCreator{
         else if(choice == 8) {
             quitApp();
         }
-        /////////////////////
-        else if(choice == 9) {
-            user.getWallet().withdraw(100);
-            System.out.println(user.getWallet().chipsBalance);
-            listGames(user);
-        }
-        ///////////////////
+
         else {
             System.out.println("Invalid input");
         }
