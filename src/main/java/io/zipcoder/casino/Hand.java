@@ -2,10 +2,31 @@ package io.zipcoder.casino;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Hand {
     ArrayList<Card> currentHand;
     HashMap<Card.Suit, Integer> handSuitInfo;
+
+    public Hand()
+    {
+        currentHand = new ArrayList<>();
+    }
+
+    public Hand(List<Card> cardsForHand)
+    {
+        currentHand = new ArrayList<>();
+        currentHand.addAll(cardsForHand);
+    }
+
+    public Hand(Card ... startingCards)
+    {
+        currentHand = new ArrayList<>();
+        for(Card card : startingCards)
+        {
+            currentHand.add(card);
+        }
+    }
 
     public ArrayList<Card> getCurrentHand()
     {
