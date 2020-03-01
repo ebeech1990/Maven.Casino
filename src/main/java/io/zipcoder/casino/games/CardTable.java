@@ -5,7 +5,7 @@ import io.zipcoder.casino.Game;
 
 abstract public class CardTable implements Game
 {
-    Deck deck;
+    private Deck deck;
 
     public CardTable(Deck deck)
     {
@@ -13,4 +13,9 @@ abstract public class CardTable implements Game
     }
 
     abstract public String displayTable();
+
+    public Deck getDeck()
+    {
+        return deck;
+    }
 }

@@ -1,11 +1,9 @@
 package io.zipcoder.casino;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static io.zipcoder.casino.Card.Rank.*;
 import static io.zipcoder.casino.Card.Suit.*;
@@ -13,7 +11,6 @@ import static org.junit.Assert.assertEquals;
 
 public class HandTest {
     Hand myHand;
-    Card myCard;
     Hand handOfTwos;
     ArrayList<Card> allDeuces;
 
@@ -21,23 +18,17 @@ public class HandTest {
     public void initialize()
     {
         allDeuces = new ArrayList<>();
-        allDeuces.add(new Card(DEUCE, SPADES));
-        allDeuces.add(new Card(DEUCE, CLUBS));
-        allDeuces.add(new Card(DEUCE, DIAMONDS));
-        allDeuces.add(new Card(DEUCE, HEARTS));
-        handOfTwos = new Hand(allDeuces);
-        myCard = new Card(QUEEN, HEARTS);
-        myHand = new Hand();
-        myHand.addCard(myCard);
+        handOfTwos = new Hand(new Card(DEUCE, SPADES), new Card(DEUCE, CLUBS), new Card(DEUCE, DIAMONDS), new Card(DEUCE, HEARTS));
+        myHand = new Hand(new Card(SIX, CLUBS));
     }
 
     @Test
     public void getHandTest()
     {
 
-        ArrayList<Card> expected = allDeuces;
+        Object[] expected = { new Card(DEUCE, SPADES), new Card(DEUCE, CLUBS), new Card(DEUCE, DIAMONDS), new Card(DEUCE, HEARTS) };
 
-        ArrayList<Card> actual = handOfTwos.getHand();
+        Object[] actual = handOfTwos.getHand().toArray();
 
         assertEquals(expected, actual);
     }
@@ -60,7 +51,7 @@ public class HandTest {
         Object[] expected = { };
         Boolean expectedSuccess = true;
 
-        Boolean actualSuccess = myHand.removeCard(myCard);
+        Boolean actualSuccess = myHand.removeCard(new Card(SIX, CLUBS));
         Object[] actual = myHand.getHand().toArray();
 
         assertEquals(expected, actual);
@@ -70,7 +61,7 @@ public class HandTest {
     @Test
     public void removeCardFailTest()
     {
-        Object[] expected = { myCard };
+        Object[] expected = { new Card(SIX, CLUBS) };
         Boolean expectedSuccess = false;
 
         Boolean actualSuccess = myHand.removeCard(new Card(SIX, DIAMONDS));

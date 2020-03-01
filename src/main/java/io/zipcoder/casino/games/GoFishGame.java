@@ -71,8 +71,8 @@ public class GoFishGame extends CardTable
     {
         for(Integer i = 0; i < 7; i++)
         {
-            human.receiveCard(deck.deal());
-            NPC.receiveCard(deck.deal());
+            human.receiveCard(getDeck().deal());
+            NPC.receiveCard(getDeck().deal());
         }
 
         takeTurn((CardPlayer)activePlayer);
@@ -149,7 +149,7 @@ public class GoFishGame extends CardTable
                 takeTurn((CardPlayer) activePlayer);
             } else {
                 Prompt.getStringInput("Go Fish!");
-                Card drawnCard = deck.deal();
+                Card drawnCard = getDeck().deal();
                 human.receiveCard(drawnCard);
                 takeTurn(NPC);
             }
@@ -173,7 +173,7 @@ public class GoFishGame extends CardTable
             else
             {
                 Prompt.getStringInput("Go Fish!");
-                ((GoFishNPC) activePlayer).receiveCard(deck.deal());
+                ((GoFishNPC) activePlayer).receiveCard(getDeck().deal());
                 takeTurn(human);
             }
         }

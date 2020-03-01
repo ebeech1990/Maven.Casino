@@ -10,13 +10,16 @@ public class Hand {
 
     public Hand()
     {
-        this(new ArrayList<Card>());
+        currentHand = new ArrayList<>();
     }
 
-    public Hand(List<Card> cardsForHand)
+    public Hand(Card... startingCards)
     {
         currentHand = new ArrayList<>();
-        currentHand.addAll(cardsForHand);
+        for(Card card : startingCards)
+        {
+            currentHand.add(card);
+        }
     }
 
     public ArrayList<Card> getHand()
