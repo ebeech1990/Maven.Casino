@@ -9,6 +9,8 @@ import static io.zipcoder.casino.Card.Rank.*;
 import static io.zipcoder.casino.Card.Suit.*;
 
 public class HandTest {
+
+
     @Test
     public void constructorTest()
     {

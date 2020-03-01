@@ -25,7 +25,7 @@ public class BlackjackHand extends Hand implements Comparable<BlackjackHand>
         return sum;
     }
 
-    public Boolean handBusted()
+    public Boolean isBusted()
     {
         if(this.sumOfHand() > 21)
         {

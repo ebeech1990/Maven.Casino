@@ -13,6 +13,7 @@ import static org.junit.Assert.assertEquals;
 public class BlackjackHandTest {
     BlackjackHand myHand;
     BlackjackHand opponentHand;
+    BlackjackHand bustedHand;
 
     @Before
     public void initialize()
@@ -24,7 +25,12 @@ public class BlackjackHandTest {
         opponentHand = new BlackjackHand();
         opponentHand.addCard(new Card(ACE, SPADES));
         opponentHand.addCard(new Card(ACE, CLUBS));
+        opponentHand.addCard(new Card(ACE, DIAMONDS));
 
+        bustedHand = new BlackjackHand();
+        bustedHand.addCard(new Card(KING, HEARTS));
+        bustedHand.addCard(new Card(KING, DIAMONDS));
+        bustedHand.addCard(new Card(EIGHT, CLUBS));
     }
 
     @Test
@@ -40,9 +46,39 @@ public class BlackjackHandTest {
     @Test
     public void aceReeval()
     {
-        Integer expected = 12;
+        Integer expected = 13;
 
         Integer actual = opponentHand.sumOfHand();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void handBeatsDealer()
+    {
+        Integer expected = 8;
+
+        Integer actual = myHand.compareTo(opponentHand);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void threeAcesWillNotBustTest()
+    {
+        Boolean expected = false;
+
+        Boolean actual = opponentHand.isBusted();
+
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    public void bustedHandTest()
+    {
+        Boolean expected = true;
+
+        Boolean actual = bustedHand.isBusted();
 
         assertEquals(expected, actual);
     }
