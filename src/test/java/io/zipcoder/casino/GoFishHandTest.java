@@ -12,6 +12,7 @@ import static org.junit.Assert.assertEquals;
 public class GoFishHandTest {
     GoFishHand myHand;
     GoFishHand opponentHand;
+    GoFishHand scoringHand;
 
     @Before
     public void initialize()
@@ -24,6 +25,11 @@ public class GoFishHandTest {
         opponentHand.addCard(new Card(KING, HEARTS));
         opponentHand.addCard(new Card(KING, CLUBS));
         opponentHand.addCard(new Card(SEVEN, HEARTS));
+        scoringHand = new GoFishHand();
+        scoringHand.addCard(new Card(THREE, SPADES));
+        scoringHand.addCard(new Card(THREE, DIAMONDS));
+        scoringHand.addCard(new Card(THREE, CLUBS));
+        scoringHand.addCard(new Card(THREE, HEARTS));
     }
 
     @Test
@@ -45,6 +51,17 @@ public class GoFishHandTest {
         expected.put(SEVEN, 1);
 
         HashMap<Card.Rank, Integer> actual = opponentHand.getRankInfo();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void removeThreesRank()
+    {
+        Object[] expected = { };
+
+        scoringHand.removeCardsOfRank(THREE);
+        Object[] actual = scoringHand.getHand().toArray();
 
         assertEquals(expected, actual);
     }

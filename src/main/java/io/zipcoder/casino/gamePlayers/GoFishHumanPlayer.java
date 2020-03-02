@@ -1,6 +1,7 @@
 package io.zipcoder.casino.gamePlayers;
 
 import io.zipcoder.casino.Card;
+import io.zipcoder.casino.GoFishHand;
 import io.zipcoder.casino.Wallet;
 import java.util.ArrayList;
 import java.util.logging.Logger;
@@ -13,6 +14,7 @@ public class GoFishHumanPlayer extends CardPlayer
     public GoFishHumanPlayer(String name, Wallet gamblingWallet)
     {
         super(name, gamblingWallet);
+        playerHand = new GoFishHand();
         score = 0;
     }
 
@@ -33,7 +35,7 @@ public class GoFishHumanPlayer extends CardPlayer
         }
         else
         {
-            hand.addAll(stolenCards);
+            playerHand.getHand().addAll(stolenCards);
             return true;
         }
     }
@@ -42,7 +44,7 @@ public class GoFishHumanPlayer extends CardPlayer
     {
         ArrayList<Card> fishedCards = new ArrayList<>();
 
-        for(Card card : this.hand)
+        for(Card card : this.getHand())
         {
             if(card.rank().equals(targetRank))
             {
@@ -50,7 +52,7 @@ public class GoFishHumanPlayer extends CardPlayer
             }
         }
 
-        this.hand.removeAll(fishedCards);
+        this.getHand().removeAll(fishedCards);
         return fishedCards;
     }
 
@@ -59,7 +61,7 @@ public class GoFishHumanPlayer extends CardPlayer
         Integer cardCount = 0;
         ArrayList<Card> foundCard = new ArrayList<>();
 
-        for(Card card : this.hand)
+        for(Card card : this.getHand())
         {
             if(card.rank().equals(set))
             {
@@ -75,7 +77,7 @@ public class GoFishHumanPlayer extends CardPlayer
         else
         {
             // TODO: Remove cards
-            this.hand.removeAll(foundCard);
+            this.getHand().removeAll(foundCard);
             score++;
             return true;
         }

@@ -32,7 +32,7 @@ public class GoFishNPC extends CardPlayer {
         }
         else
         {
-            hand.addAll(stolenCards);
+            playerHand.getHand().addAll(stolenCards);
             return true;
         }
     }
@@ -58,7 +58,7 @@ public class GoFishNPC extends CardPlayer {
         Integer cardCount = 0;
         ArrayList<Card> foundCard = new ArrayList<>();
 
-        for(Card card : this.hand)
+        for(Card card : this.playerHand.getHand())
         {
             if(card.rank().equals(set))
             {
@@ -74,7 +74,7 @@ public class GoFishNPC extends CardPlayer {
         else
         {
             // TODO: Remove cards
-            this.hand.removeAll(foundCard);
+            this.playerHand.getHand().removeAll(foundCard);
             score++;
             return true;
         }
